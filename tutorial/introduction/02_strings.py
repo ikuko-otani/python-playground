@@ -55,11 +55,17 @@ for s in strings:
 sentence = "This is a sentence with some words."
 print(sentence.split())  # Splitting a string into a list of words
 print(sentence.split("s"))  # Splitting a string using 's' as the delimiter
+print(sentence.split(" ", 2))  # Splitting a string into a list of words, but only at the first 2 occurrences of the delimiter
+print(sentence.strip("This."))  # Stripping characters from the beginning and end of the string
 print(sentence.replace("s", "X"))  # Replacing all occurrences of 's' with 'X'
+
 print(sentence.find("some"))  # Finding the index of the first occurrence of "some"
 print(sentence.find("notfound"))  # Finding a substring that doesn't exist returns -1
 print(sentence.startswith("This"))  # Checking if the string starts with "This"
 print(sentence.endswith("words."))  # Checking if the string ends with "words."
+print(sentence.count("s"))  # Counting the number of occurrences of 's' in the string
+
+print(sentence.join(["This", "is", "a", "joined", "string."]))  # Joining a list of strings into a single string with a separator
 
 # Show the index and the character at that index, as well as the character at the negative index
 for i in range(len(sentence)):
