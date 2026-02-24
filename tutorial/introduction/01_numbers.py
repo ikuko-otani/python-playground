@@ -1,4 +1,3 @@
-# 3. A Non-Formal Intruduction to Python
 # 3.1.1 Numbers
 print(2+2)
 print(50 - 5*6)

@@ -1,4 +1,3 @@
-# 3. A Non-Formal Intruduction to Python
 # 3.1.2 Strings
 
 strings = []
