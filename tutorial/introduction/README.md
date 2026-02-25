@@ -38,3 +38,9 @@
 ### Iterating Over Strings
 - `for char in "Hello":` — iterates over characters.
 
+## 03 Lists
+- Indexing and slicing are the same idea as strings: use `lst[i]`, `lst[-1]`, `lst[a:b]`, `lst[a:b:c]` to access ranges efficiently.
+- Use `len`, `sum`, `max`, `min` on lists to quickly compute aggregates, a common pattern in array problems.
+- Modify lists in place with `append`, `+=`, and slice assignment (`lst[a:b] = [...]`) to insert, replace, or delete ranges without extra lists.
+- Be careful with references: `b = a` shares the **same** list, while `b = a[:]` makes a shallow copy; this matters for side effects in helper functions.
+- Work comfortably with nested lists (matrices), using `lst[i][j]` access and nested loops for 2D problems.
