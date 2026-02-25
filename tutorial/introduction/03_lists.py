@@ -6,6 +6,9 @@ print(squares[0])
 print(squares[-1])  # Negative indexing
 print(squares[-3:])  # Slicing a list
 
+print(sum(squares))
+print(max(squares), min(squares))
+
 squares += [36, 49, 64, 81, 100]  # Concatenating lists
 print(squares)
 
@@ -56,4 +59,18 @@ print(letters_copy)
 letters[:] = []  # Clear the list
 print(letters)
 
+a = ['a', 'b', 'c']
+n = [1, 2, 3]
+x = [a, n]  # A list of lists
+print(x)
+print(x[0])
+print(x[1][2])
 
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+for row in matrix:
+    for value in row:
+        print(value, end=" ")
