@@ -20,6 +20,8 @@ while a < 1000:
   print(a, end=',')
   a, b = b, a+b
 
+print() # print a newline
+
 print("--- multiple assignment demo ---")
 
 # Swap two variables using multiple assignment
@@ -69,3 +71,15 @@ print("a == b:", a == b)
 print("a <= b:", a <= b)
 print("a >= b:", a >= b)
 print("a != b:", a != b)
+
+print("--- basic print demo ---")
+i = 256 ** 2
+print("The value of i is", i)
+
+print("--- multiple arguments and end demo ---")
+
+# Show how print handles multiple arguments and a custom end
+print ("Hello", "world", 42)
+print("No newline here", end=" | ")
+print("Next text continues on the same line")
+
