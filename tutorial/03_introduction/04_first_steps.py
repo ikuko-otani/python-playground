@@ -41,3 +41,31 @@ while a < 10:
   print("Next a, b will be:", next_a, next_b)
   a, b = next_a, next_b
   print("Updated a, b:", a, b)
+
+print("--- truthisness demo ---")
+
+# Non-zero integers are True , zero is False
+for value in [0, 1, -1, 10]:
+  if value:
+    print(value, "is treated as True")
+  else:
+    print(value, "is treated as False")
+
+# Empty and non-empty sequences
+for seq in ["", "hi", [], [1, 2, 3]]:
+  if seq:
+    print(repr(seq), "is treated as True")
+  else:
+    print(repr(seq), "is treated as False")
+
+print("--- comparison operators demo ---")
+
+a = 3
+b = 5
+
+print("a < b:", a < b)
+print("a > b:", a > b)
+print("a == b:", a == b)
+print("a <= b:", a <= b)
+print("a >= b:", a >= b)
+print("a != b:", a != b)
