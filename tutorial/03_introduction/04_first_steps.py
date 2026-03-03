@@ -83,3 +83,13 @@ print ("Hello", "world", 42)
 print("No newline here", end=" | ")
 print("Next text continues on the same line")
 
+# Using input() to read a value from the user
+user_name = input("What is your name? ")
+print("Hello,", user_name)
+
+# Check if a number is odd or even
+n = int(input("Enter a number: "))
+if n % 2 == 0:
+  print("Even")
+else:
+  print("Odd")
