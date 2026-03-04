@@ -82,3 +82,40 @@ print(classify_number(10))
 print(is_leap_year(2000))
 print(is_leap_year(1900))
 print(is_leap_year(2024))
+
+def fizz_buzz(n: int) -> None:
+  """Print FizzBuzz from 1 to n."""
+  for i in range(1, n + 1):
+    if i % 15 == 0:
+      print("FizzBuzz")
+    elif i % 3 == 0:
+      print("Fizz")
+    elif i % 5 == 0:
+      print("Buzz")
+    else:
+      print(i)
+
+fizz_buzz(20)
+
+def classify_string(s: str) -> str:
+  """Classify a string as empty, digits, letters, or mixed"""
+  if len(s) == 0:
+    return "empty"
+  if s.isdigit():
+    return "digits"
+  if s.isalpha():
+    return "letters"
+  return "mixed"
+
+print(classify_string("123"))
+
+from typing import List
+
+def linear_search(nums: List[int], target: int) -> bool:
+  """Return True if target exists in nums."""
+  for x in nums:
+    if x == target:
+      return True
+  return False
+
+print(linear_search([1, 2, 3], 4))
