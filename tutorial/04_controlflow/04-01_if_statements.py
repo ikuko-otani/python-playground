@@ -56,4 +56,29 @@ if 0 <= score <= 100:
 else:
   print("Invalid score")
 
+# Conditional logic examples
+def classify_number(x: int) -> str:
+  """Classify an integer as nagative, zero, or positive."""
+  if x < 0:
+    return "negative"
+  if x == 0:
+    return "zero"
+  return "positive"
 
+def is_leap_year(year: int) -> bool:
+  """Return True if the given year is a leap year."""
+  if year % 400 == 0:
+    return True
+  if year % 100 == 0:
+    return False
+  if year % 4 == 0:
+    return True
+  return False
+
+print(classify_number(-5))
+print(classify_number(0))
+print(classify_number(10))
+
+print(is_leap_year(2000))
+print(is_leap_year(1900))
+print(is_leap_year(2024))
