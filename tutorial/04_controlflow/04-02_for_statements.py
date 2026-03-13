@@ -29,3 +29,23 @@ for n in numbers:
     max_value = n
 print("Max :", max_value)
 
+matrix = [
+  [1,2,3],
+  [4,5,6],
+  [7,8,9],
+]
+
+# Print all elements row by row
+for row in matrix:
+  for value in matrix:
+    print(value, end=" ")
+  print()
+
+# Flatten matrix into a single list
+flattened = []
+for row in matrix:
+  for value in row:
+    flattened.append(value)
+
+print("Flattened: ", flattened)
+
