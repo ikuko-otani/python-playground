@@ -66,3 +66,20 @@ for row in matrix:
   for i in range(len(row)):
     col_sums[i] += row[i]
 print("Column sums:", col_sums)
+
+from typing import List
+
+def contains_duplicated_bruteforce(nums: List[int]) -> bool:
+  """Return True if there are any duplicate values in nums."""
+  n = len(nums)
+  for i in range(n):
+    print("i:", nums[i])
+    for j in range (i + 1, n):
+      print("j:", nums[j])
+      if nums[i] == nums[j]:
+        return True
+  return False
+
+print(contains_duplicated_bruteforce([1, 2, 3, 4]))   # False
+print(contains_duplicated_bruteforce([1, 2, 3, 1]))   # True
+print(contains_duplicated_bruteforce([1, 1, 1, 1]))   # True
