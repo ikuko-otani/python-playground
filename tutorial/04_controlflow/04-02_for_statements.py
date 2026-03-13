@@ -14,28 +14,30 @@ numbers = [1, 3, 5, 2, 4]
 total = 0
 for x in numbers:
   total += x
-print("Sum: ", total)
+print("Sum:", total)
 
 # Find the maximum using indices
 max_value = numbers[0]
 for i in range(1, len(numbers)):
   if numbers[i] > max_value:
     max_value = numbers[i]
-print("Max :", max_value)
+print("Max:", max_value)
 
 max_value = numbers[0]
 for n in numbers:
   if n > max_value:
     max_value = n
-print("Max :", max_value)
+print("Max:", max_value)
 
 matrix = [
   [1,2,3],
   [4,5,6],
   [7,8,9],
 ]
+print("Matrix:", matrix)
 
 # Print all elements row by row
+print("Row by row:")
 for row in matrix:
   for value in matrix:
     print(value, end=" ")
@@ -47,5 +49,20 @@ for row in matrix:
   for value in row:
     flattened.append(value)
 
-print("Flattened: ", flattened)
+print("Flattened:", flattened)
 
+# Compute row sums
+row_sums = []
+for row in matrix:
+  row_total = 0
+  for value in row:
+    row_total += value
+  row_sums.append(row_total)
+
+print("Row sums:", row_sums)
+
+col_sums = [0, 0, 0]
+for row in matrix:
+  for i in range(len(row)):
+    col_sums[i] += row[i]
+print("Column sums:", col_sums)
