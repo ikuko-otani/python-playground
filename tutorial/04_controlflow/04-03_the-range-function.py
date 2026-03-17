@@ -35,3 +35,14 @@ for i in range(len(nums) - 1):
 # Iterate backwords over indices
 for i in range(len(nums) - 1, -1, -1):
   print("reverse index:", i, "value:", nums[i])
+
+# Show that range is an iterable, not a real list
+r = range(4)
+print("range object:", r)
+
+# Convert range to a list explicitly
+print("list(range(4)):", list(r))
+
+# Use range as an iterable for sum()
+total = sum(range(4))
+print("sum(range(4)):", total)
