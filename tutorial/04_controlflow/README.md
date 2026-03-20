@@ -1,3 +1,5 @@
+# 4. More Control Flow Tools
+
 ## 4.1 if Statements
 
 - **Branching logic** is everywhere: validation, edge, cases, and early returns.
@@ -20,3 +22,12 @@
 - `range(start, stop)` includes start, exludes stop.
 - `range(start, stop, step)` can move forwords or backwards.
 - Convert to a list only when you really need all values at once (`list(range(n))`).
+
+## 4.4. break and continue Statements
+- `break`: exits the **innermost** loop immediately; useful for early termination
+- `continue`: skips the **rest of the current iteration**; useful for filtering out invalid/unwanted values.
+- **`return` is preferred over `break`** because it exits the function entirely and avoids extra flag variables.
+- `continue` is idiomatic for **guard clauses inside loops** - reject bad input early and keep the happy path un-indented.
+- `break` matters in **nested loops**: it only exits the *inner* loop.
+  To exit all loops at once, use a function with `return`.
+- Linear search with `break`: O(n) time, O(1) space.
