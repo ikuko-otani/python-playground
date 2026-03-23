@@ -54,6 +54,7 @@ class AbstractRepository:
 
 print("[4] Ellipsis placeholder examples defined successfully")
 
+
 # --- [5] Key difference: pass vs ... ---
 # pass  -> truly does nothing; preferred for runtime stubs and simple placeholders
 # ...   -> evaluates to the Ellipsis object; preferred in typed/stub contexts
