@@ -1,5 +1,5 @@
 # 04-06_pass_statements.py
-# 4.6 pass Statements
+# 4.6. pass Statements
 # Ref: https://docs.python.org/3/tutorial/controlflow.html#pass-statements
 
 # --- [1] Busy-wait loop: does nothing until keyboard interrupt ---

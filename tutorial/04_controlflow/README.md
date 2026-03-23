@@ -31,3 +31,15 @@
 - `break` matters in **nested loops**: it only exits the *inner* loop.
   To exit all loops at once, use a function with `return`.
 - Linear search with `break`: O(n) time, O(1) space.
+
+## 4.6. pass Statements
+- `pass` is a **no-op statement**: syntactically required but does nothing at runtime.
+- Common use cases:
+  - Busy-wait loops (rare in production; prefer `asyncio`)
+  - Empty class bodies (e.g., custom exception stubs: `class NotFoundError(Exception): pass`)
+  - Unimplemented function placeholders during top-down design
+- `...` (Ellipsis) is an **object** (`<class 'ellipsis'>`), not a keyword.
+  - Preferred in **typed stubs** (`.pyi` files) and **abstract method bodies**.
+  - Tools like `mypy` and `pyright` (used in FastAPI projects) treat `...` as a signal for "not yet implemented".
+- In FastAPI / Pydantic v2 context: `...` is also used as a **required field marker** in `Field(...)` — a completely different meaning.
+- Interview tip: if asked "what does `pass` do?", always mention the Ellipsis alternative and when you'd choose each.
