@@ -12,3 +12,14 @@
 #     pass  # Busy-wait for keyboard interrupt (Ctrl+C)
 
 print("[1] Busy-wait loop: see commented-out code above")
+
+
+# --- [2] Minimal (empty) class definition ---
+# pass acts as a placeholder body so Python doesn't raise a SyntaxError.
+# Useful for stubbing out class hierarchies early in design.
+class MyEmptyClass:
+    pass
+
+
+obj = MyEmptyClass()
+print(f"[2] MyEmptyClass Instance created: {obj}")
