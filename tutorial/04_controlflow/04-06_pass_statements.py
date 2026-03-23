@@ -23,3 +23,14 @@ class MyEmptyClass:
 
 obj = MyEmptyClass()
 print(f"[2] MyEmptyClass Instance created: {obj}")
+
+# --- [3] Placeholder for a function body (not yet implemented) ---
+# Allows you to keep thinking at an abstract level without syntax errors.
+
+
+def initlog(*args):
+    pass  # Remember to implement this!
+
+
+initlog("test")
+print("[3] initlog() called successfully (does nothing yet)")
