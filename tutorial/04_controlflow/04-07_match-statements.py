@@ -79,3 +79,27 @@ def classify_http_error(code: int) -> str:
 print(classify_http_error(401))  # Auth error (401 Unauthorized or 403 Forbidden)
 print(classify_http_error(503))  # Server error
 print(classify_http_error(200))  # Other
+
+
+# ============================================================
+# [block-4] Sequence pattern (tuple / list)
+# match works on tuples and lists by structure, not just type.
+# This is more powerful than switch: it unpacks values inline.
+# ============================================================
+def handle_command(command: tuple) -> str:
+    match command:
+        case ("quit",):
+            return "Quitting..."
+        case ("go", direction):
+            # 'direction' is captured as a variable
+            return f"Going {direction}"
+        case ("go", direction, speed):
+            return f"Going {direction} at speed {speed}"
+        case _:
+            return f"Unknown command: {command}"
+
+
+print(handle_command(("quit",)))  # Quitting...
+print(handle_command(("go", "north")))  # Going north
+print(handle_command(("go", "south", 5)))  # Going south at speed 5
+print(handle_command(("fly",)))  # Unknown command: ('fly',)
