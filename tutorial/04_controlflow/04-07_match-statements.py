@@ -47,9 +47,35 @@ def http_method_level(method: str) -> str:
             return f"Unsupported method: {method}"
 
 
-print(http_method_level("GET"))
-print(http_method_level("POST"))
-print(http_method_level("PUT"))
-print(http_method_level("PATCH"))
-print(http_method_level("DELETE"))
-print(http_method_level("HEAD"))
+print(http_method_level("GET"))  # Read Resource
+print(http_method_level("POST"))  # Create resource
+print(http_method_level("PUT"))  # Update resource
+print(http_method_level("PATCH"))  # Update resource
+print(http_method_level("DELETE"))  # Delete resource
+print(http_method_level("HEAD"))  # Unsupported method: HEAD
+
+
+# ============================================================
+# [block-3] OR pattern  (case A | B | C:)
+# Groups multiple values into a single branch.
+# Common use: grouping HTTP error codes by category.
+# ============================================================
+def classify_http_error(code: int) -> str:
+    match code:
+        case 400:
+            return "Bad request"
+        case 401 | 403:
+            # OR pattern: authentication / authorization errors
+            return "Auth error (401 Unauthorized or 403 Forbidden)"
+        case 404:
+            return "Not Found"
+        case 500 | 502 | 503:
+            # OR pattern: server-side errors
+            return "Server error"
+        case _:
+            return "Other"
+
+
+print(classify_http_error(401))  # Auth error (401 Unauthorized or 403 Forbidden)
+print(classify_http_error(503))  # Server error
+print(classify_http_error(200))  # Other
