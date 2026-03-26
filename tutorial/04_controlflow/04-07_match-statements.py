@@ -174,3 +174,24 @@ print(classify_point(Point(0, 0)))  # Origin
 print(classify_point(Point(3, 0)))  # On X-axis at x=3
 print(classify_point(Point(0, -2)))  # On Y-axis at y=-2
 print(classify_point(Point(1, 2)))  # Somewhere at (1, 2)
+
+
+# ============================================================
+# [block-7] Guard clause  (case pattern if condition:)
+# A guard adds an extra condition after the pattern.
+# The case only matches if BOTH the pattern AND the guard are True.
+# Guards are evaluated only when the pattern itself matches.
+# ============================================================
+def classify_point_with_guard(point: Point):
+    match point:
+        case Point(x, y) if x == y:
+            return f"On diagonal: ({x}, {y})"
+        case Point(x, y) if x > 0 and y > 0:
+            return f"First quadrant: ({x}, {y})"
+        case Point(x, y):
+            return f"Other: ({x}, {y})"
+
+
+print(classify_point_with_guard(Point(3, 3)))  # On diagonal: (3, 3)
+print(classify_point_with_guard(Point(2, 5)))  # First quadrant: (2, 5)
+print(classify_point_with_guard(Point(-1, 4)))  # Other: (-1, 4)
