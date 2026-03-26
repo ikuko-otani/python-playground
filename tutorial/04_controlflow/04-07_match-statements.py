@@ -140,3 +140,37 @@ def first_and_last(items: list) -> str:
 
 print(first_and_last([1, 2, 3, 4, 5]))  # First: 1, Last: 5
 print(first_and_last([42]))  # Only one item: 42
+
+
+# ============================================================
+# [block-6] Class pattern  (ClassName(attr=value, ...))
+# Matches instances of a class and unpacks attributes.
+# __match_args__ allows positional syntax: Point(x, y)
+#   instead of: Point(x=x, y=y)
+# ============================================================
+class Point:
+    # __match_args__ defines the order for positional pattern matching
+    __match_args__ = ("x", "y")
+
+    def __init__(self, x: float, y: float) -> None:
+        self.x = x
+        self.y = y
+
+
+def classify_point(point: Point) -> str:
+    match point:
+        case Point(0, 0):
+            # Positional syntax works because of __match_args__
+            return "Origin"
+        case Point(x, 0):
+            return f"On X-axis at x={x}"
+        case Point(0, y):
+            return f"On Y-axis at y={y}"
+        case Point(x, y):
+            return f"Somewhere at ({x}, {y})"
+
+
+print(classify_point(Point(0, 0)))  # Origin
+print(classify_point(Point(3, 0)))  # On X-axis at x=3
+print(classify_point(Point(0, -2)))  # On Y-axis at y=-2
+print(classify_point(Point(1, 2)))  # Somewhere at (1, 2)
