@@ -237,3 +237,29 @@ def handle_api_response(response: APIResponse) -> str:
 print(handle_api_response(APIResponse(200, {"id": 1})))
 print(handle_api_response(APIResponse(401, {})))
 print(handle_api_response(APIResponse(429, {})))
+
+
+# ============================================================
+# [block-9] Real-world example 2: event/action dispatch
+# Useful in FastAPI WebSocket handlers, background tasks,
+# or command-pattern implementations.
+# Sequence pattern makes it easy to dispatch by (action, payload).
+# ============================================================
+def dispatch_event(event: dict) -> str:
+    match event:
+        case {"type": "user.created", "user_id": user_id}:
+            # Dict pattern: matches dict structure and captures values
+            return f"Send welcome email to user {user_id}"
+        case {"type": "order.placed", "order_id": order_id, "total": total}:
+            return f"Process paymant for order {order_id}, amount: {total}"
+        case {"type": "order.cancelled", "order_id": order_id}:
+            return f"Refund order {order_id}"
+        case {"type": event_type}:
+            return f"Unhandled event type: {event_type}"
+        case _:
+            return "Malformed event"
+
+print(dispatch_event({"type": "user.created", "user_id": 42}))
+print(dispatch_event({"type": "order.placed", "order_id": 99, "total": 2980}))
+print(dispatch_event({"type": "unknown.event"}))
+print(dispatch_event({}))
