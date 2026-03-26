@@ -195,3 +195,45 @@ def classify_point_with_guard(point: Point):
 print(classify_point_with_guard(Point(3, 3)))  # On diagonal: (3, 3)
 print(classify_point_with_guard(Point(2, 5)))  # First quadrant: (2, 5)
 print(classify_point_with_guard(Point(-1, 4)))  # Other: (-1, 4)
+
+
+# ============================================================
+# [block-8] Real-world example 1: FastAPI response code routing
+# In FastAPI, you often need to handle different HTTP response
+# codes from an external API call or a service layer result.
+# match is cleaner than a long if/elif chain for this pattern.
+# ============================================================
+
+# Simulating a response object (as you'd receive from httpx or requests)
+from dataclasses import dataclass
+
+
+@dataclass
+class APIResponse:
+    status_code: int
+    body: dict
+    body: dict
+
+
+def handle_api_response(response: APIResponse) -> str:
+    match response.status_code:
+        case 200 | 201:
+            return f"Success: {response.body}"
+        case 400:
+            return f"Bad request sent to external API: {response.body}"
+        case 401 | 403:
+            return "Auth failure: check API credentials or permissions"
+        case 404:
+            return "Resource not found on external API"
+        case 429:
+            return "Rate limited: back off and retry"
+        case 500 | 502 | 503:
+            return "External API server error: consider circuit breaker"
+        case _:
+            return f"Unhandled status {response.body}"
+
+
+# Simulated calls
+print(handle_api_response(APIResponse(200, {"id": 1})))
+print(handle_api_response(APIResponse(401, {})))
+print(handle_api_response(APIResponse(429, {})))
