@@ -103,3 +103,40 @@ print(handle_command(("quit",)))  # Quitting...
 print(handle_command(("go", "north")))  # Going north
 print(handle_command(("go", "south", 5)))  # Going south at speed 5
 print(handle_command(("fly",)))  # Unknown command: ('fly',)
+
+
+# ============================================================
+# [block-5] Sequence pattern with *rest and *_ (star patterns)
+# *rest captures remaining elements as a list.
+# *_ discards remaining elements (don't care).
+# ============================================================
+def summarize_path(parts: list) -> str:
+    match parts:
+        case []:
+            return "Empty path"
+        case [only]:
+            # Matches al list with exactly one element
+            return f"Root segment: {only}"
+        case [first, *rest]:
+            # Captures first element, rest is a list of remaining
+            return f"Base: {first}, rest: {rest}"
+
+
+print(summarize_path([]))  # Empty path
+print(summarize_path(["api"]))  # Root segment: api
+print(summarize_path(["api", "vi", "users"]))  # Base: api, rest: ['vi', 'users']
+
+
+def first_and_last(items: list) -> str:
+    match items:
+        case [first, *_, last]:
+            # *_ discards middle elements (we don't need them)
+            return f"First: {first}, Last: {last}"
+        case [single]:
+            return f"Only one item: {single}"
+        case []:
+            return "Empty"
+
+
+print(first_and_last([1, 2, 3, 4, 5]))  # First: 1, Last: 5
+print(first_and_last([42]))  # Only one item: 42
