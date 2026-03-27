@@ -38,3 +38,29 @@ def fib_list(n):
 print("--- fib_list ---")
 print(fib_list(100))
 # Expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+
+
+# --- [3a] Comparing functions with and without explicit return ---
+
+
+# This function has no return statement — Python implicitly returns None
+def do_nothing():
+    """A function body that does nothing and returns nothing explicitly."""
+    pass  # Valid body, but no return
+
+
+# This function explicitly returns a value
+def greet(name):
+    """Return a greeting string."""
+    return f"Hello, {name}!"
+
+
+print("--- return / None experiment ---")
+
+# Capture the return value of each
+result_nothing = do_nothing()
+result_greet = greet("world")
+
+print(f"do_nothing() returned: {result_nothing}")  # None
+print(f"greet() returned: {result_greet}")  # Hello, world!
+print(f"Type of None result: {type(result_nothing)}")  # <class 'NoneType'
