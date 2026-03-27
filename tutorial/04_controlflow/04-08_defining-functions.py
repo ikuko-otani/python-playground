@@ -80,3 +80,13 @@ val_positive = check_positive(5)
 
 print(f"check_positive(-1) returned: {val_negative}")  # None
 print(f"check_positive(5) returned: {val_positive}")  # None (print is a side effect)
+
+
+# --- [4a] Functions are first-class objects — assign them to variables ---
+# This is the foundation of higher-order functions, callbacks, and dependency injection
+# (a common pattern in FastAPI with Depends()).
+f = fib_list  # Assign the function object itself (no parentheses!)
+print("--- function as object ---")
+print(f"f is fib_list: {f is fib_list}")  # True — same object
+print(f(50))  # Call fib_list via the alias f
+# Expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
