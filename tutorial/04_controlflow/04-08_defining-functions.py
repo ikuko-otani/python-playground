@@ -41,8 +41,6 @@ print(fib_list(100))
 
 
 # --- [3a] Comparing functions with and without explicit return ---
-
-
 # This function has no return statement — Python implicitly returns None
 def do_nothing():
     """A function body that does nothing and returns nothing explicitly."""
@@ -64,3 +62,21 @@ result_greet = greet("world")
 print(f"do_nothing() returned: {result_nothing}")  # None
 print(f"greet() returned: {result_greet}")  # Hello, world!
 print(f"Type of None result: {type(result_nothing)}")  # <class 'NoneType'
+
+
+# --- [3b] return with no value also produces None ---
+# An early return (no value) is useful for guard clauses in real backend code.
+def check_positive(n):
+    """Return early if n is not positive; otherwise print confirmation."""
+    if n <= 0:
+        # Early exit — implicitly returns None
+        return
+    print(f"{n} is positive!")
+
+
+print("--- bare return ---")
+val_negative = check_positive(-1)
+val_positive = check_positive(5)
+
+print(f"check_positive(-1) returned: {val_negative}")  # None
+print(f"check_positive(5) returned: {val_positive}")  # None (print is a side effect)
