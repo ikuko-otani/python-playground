@@ -20,3 +20,21 @@ def fib_print(n):
 print("--- fib_print ---")
 fib_print(100)
 # Expected: 0 1 1 2 3 5 8 13 21 34 55 89
+
+
+# --- [2] Define a function that RETURNS a list of Fibonacci numbers up to n ---
+# Returning a value makes the result reusable — assign it, pass it, test it.
+# This is the preferred pattern in backend code (FastAPI endpoints, unit tests, etc.).
+def fib_list(n):
+    """Return a list containing Fibonacci series up to n."""
+    result = []
+    a, b = 0, 1
+    while a < n:
+        result.append(a)
+        a, b = b, a + b
+    return result
+
+
+print("--- fib_list ---")
+print(fib_list(100))
+# Expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
