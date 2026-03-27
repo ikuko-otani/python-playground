@@ -69,3 +69,56 @@
   - Command pattern routing in background tasks
 - `match` is NOT just a `switch` replacement — its power comes from **destructuring** (unpacking values inline), which makes it closer to pattern matching in Haskell/Rust/Scala.
 
+## 4.7. Defining Functions
+
+### Basic syntax
+
+- Use the `def` keyword followed by the function name, parameters in parentheses, and a colon.
+- The function body must be indented (PEP 8: 4 spaces).
+- An optional docstring on the first line documents the function's purpose.
+
+```python
+def greet(name):
+    """Return a greeting string."""
+    return f"Hello, {name}!"
+```
+
+### Why use functions?
+
+- Reusability: write once, call many times — no duplicated logic.
+- Structure: break a large problem into small, named units.
+- Testability: a function with a clear input/output is easy to unit-test (pytest).
+- Readability: a well-named function acts as self-documenting code.
+
+### Definition vs Call
+
+- `def fib_list(n):` — definition: registers the function object in the namespace; nothing runs yet.
+- `fib_list(100)` — call: executes the body and returns a result.
+- A common interview mistake: forgetting that def alone does not execute anything.
+
+### return and None
+- Every Python function returns a value. If `return` is omitted, Python implicitly returns `None`.
+- A bare `return` (no value) also returns `None` — useful for early-exit guard clauses.
+- Always prefer `return` with a value in backend code: it makes the result assignable, testable, and composable.
+
+### Functions as objects (first-class)
+- Functions are objects; you can assign them to variables and call them via an alias.
+
+```python
+f = fib_list   # no parentheses — assigns the object, not the result
+f(50)          # same as fib_list(50)
+```
+
+- This is the foundation of higher-order functions, callbacks, and FastAPI's `Depends()`.
+
+### Local namespace
+
+- Variables defined inside a function are local — isolated from the outer scope.
+- This isolation makes functions predictable and safe to test independently.
+
+
+### Interview one-liners
+
+- *"Why use functions?"* → "To encapsulate logic for reuse, readability, and testability — the same principles that make FastAPI route handlers and service-layer functions clean."
+- *"What does a function return if there's no return statement?"* → "It implicitly returns None. In Python, every function call is an expression."
+- *"What is a first-class function?"* → "A function treated as a value — assignable to a variable, passable as an argument. It's how we implement callbacks and dependency injection."
