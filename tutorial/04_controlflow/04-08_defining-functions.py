@@ -90,3 +90,20 @@ print("--- function as object ---")
 print(f"f is fib_list: {f is fib_list}")  # True — same object
 print(f(50))  # Call fib_list via the alias f
 # Expected: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+
+# --- [4b] Local vs global namespace ---
+# Variables created inside a function are LOCAL — they do not affect the outer scope.
+# This isolation is what makes functions safe and predictable to test.
+message = "I am global"  # Global variable
+
+
+def show_scope():
+    message = "I am local"  # Local variable — shadows the global inside this function
+    print(f"Inside function: message = '{message}'")
+
+
+print("--- scope experiment ---")
+print(f"Before call: message = '{message}'")  # Global
+show_scope()  # Local
+print(f"After call: message = '{message}'")  # Still global — function did NOT modify it
