@@ -16,3 +16,16 @@ first_out = bad_queue.pop(0)
 print(f"[1] Dequeued: {first_out}")  # first
 print(f"[1] Remaining: {bad_queue}")  # ['second', 'third', 'fourth']
 print(f"[1] FIFO order preserved? Yes, but pop(0) is O(n) — avoid in production!")
+
+# --- [2] The RIGHT way: collections.deque ---
+# deque (double-ended queue) supports O(1) appends AND poplefts.
+# This is the standard library solution for implementing queues in Python.
+
+from collections import deque
+
+# Initialize a queue with initial items
+queue = deque(["Eric", "John", "Michael"])
+print(f"[2] Initial queue: {queue}")
+queue.append("Terry")
+queue.append("Graham")
+print(f"[2] After enqueue Terry and Graham: {queue}")
