@@ -40,3 +40,24 @@ second_out = queue.popleft()
 print(f"[3] First dequeued: {first_out}")  # Eric
 print(f"[3] Second dequeued: {second_out}")  # John
 print(f"[3] Remaining queue: {queue}")  # deque(['Michael', 'Terry', 'Graham'])
+
+# --- [4] Additional deque operations useful in interviews ---
+# appendleft / extendleft allow efficient manipulation at BOTH ends.
+# maxlen parameter creates a bounded queue — useful for sliding window problems.
+
+demo = deque([1, 2, 3])
+
+# appendleft: add to the LEFT end — O(1)
+demo.appendleft(0)
+print(f"[4] After appendleft(0): {demo}")  # deque([0, 1, 2, 3])
+
+# rotate: rotate n steps to the right (negative = left)
+demo.rotate(1)
+print(f"[4] After rotate(1): {demo}")  # deque([3, 0, 1, 2])
+demo.rotate(-2)
+print(f"[4] After rotate(-2): {demo}")  # deque([1, 2, 3, 0])
+
+# maxlen: bounded deque — oldest item is dropped automatically when full
+bounded = deque([1, 2, 3], maxlen=3)
+bounded.append(4)
+print(f"[4] Bounded deque after append(4): {bounded}")  # deque([2, 3, 4], maxlen=3)
