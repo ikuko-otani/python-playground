@@ -29,3 +29,14 @@ print(f"[2] Initial queue: {queue}")
 queue.append("Terry")
 queue.append("Graham")
 print(f"[2] After enqueue Terry and Graham: {queue}")
+
+# --- [3] Dequeue: remove from the left end — O(1) ---
+# popleft() is the key advantage of deque over list.pop(0).
+# Always use popleft() for FIFO queue operations.
+
+first_out = queue.popleft()
+second_out = queue.popleft()
+
+print(f"[3] First dequeued: {first_out}")  # Eric
+print(f"[3] Second dequeued: {second_out}")  # John
+print(f"[3] Remaining queue: {queue}")  # deque(['Michael', 'Terry', 'Graham'])
