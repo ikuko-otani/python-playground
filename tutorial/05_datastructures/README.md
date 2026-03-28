@@ -33,8 +33,6 @@ return `None` by design. This is Python's signal that the operation modifies the
 
 ### 5.1.1. Using Lists as Stacks
 
-# Ch 5.1.1 Lists as Stacks Interview Notes
-
 #### Tips
 - `list.append`/`pop()` provide an O(1) LIFO stack, which is ideal for history, undo stacks, and simulating recursion.
 - `pop(0)`/`insert(0, x)` are O(n) and therefore slow; for queues or BFS you should use `from collections import deque`.
@@ -43,3 +41,32 @@ return `None` by design. This is Python's signal that the operation modifies the
 #### Pitfalls
 - Mutating methods like `sort`, `reverse`, `insert`, and `remove` all return `None`; for example, `result = lst.sort()` will make `result` be `None`.
 - Typical interview question: “list vs deque?” → For stacks (LIFO), lists are efficient; for queues (FIFO), use `deque` which supports O(1) operations at both ends.
+
+### 5.1.2. Using Lists as Queues
+
+## Ch 5.1.2 — Using Lists as Queues
+
+### Key Points
+
+- A queue follows **FIFO** (First-In, First-Out) order.
+- **Do NOT use `list.pop(0)` for queue dequeue operations** — it is O(n) because
+  Python must shift all remaining elements leftward. This is a classic interview trap.
+- **Always use `collections.deque` with `popleft()`** — both `append()` and `popleft()`
+  are O(1), making it the correct Python queue implementation.
+- `deque` supports operations at **both ends**: `append`/`pop` (right), `appendleft`/`popleft` (left).
+- `deque(maxlen=N)` creates a **bounded queue** — the oldest item is auto-discarded
+  when the queue exceeds capacity. Useful for sliding window and rate-limiting patterns.
+- In real backend code (FastAPI background tasks, message processing), you would typically
+  use a proper message broker (Redis Queue, Celery, etc.) rather than an in-process deque,
+  but understanding deque is essential for DSA interviews (e.g., BFS, sliding window).
+- **Interview tip**: if asked to implement a queue in Python, immediately reach for
+  `collections.deque` — using `list` will raise red flags with experienced interviewers.
+
+### Complexity Summary
+
+| Operation       | `list`  | `collections.deque` |
+|-----------------|---------|---------------------|
+| append (right)  | O(1)    | O(1)                |
+| pop (right)     | O(1)    | O(1)                |
+| pop (left)      | **O(n)**| **O(1)**            |
+| appendleft      | **O(n)**| **O(1)**            |
