@@ -22,3 +22,15 @@ current = history.pop()
 print("back to:", current, "remaining:", history)
 current = history.pop()
 print("back to:", current, "remaining:", history)
+
+# Undo
+document = "Hello"
+changes = []
+changes.append("Hello World")
+changes.append("Hello Python")
+print("changes:", changes)
+
+document = changes.pop()
+print("undo to:", document)  # Hello Python
+document = changes.pop()
+print("undo to:", document)  # Hello World
