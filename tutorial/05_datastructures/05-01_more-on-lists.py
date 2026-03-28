@@ -160,7 +160,7 @@ except TypeError as err:
     print("mixed sort TypeError:", err)
 
 # =============================================================
-# [5-5] copy
+# [12] copy
 # copy(): returns a SHALLOW copy of the list; equivalent to a[:]
 # Shallow means nested objects are NOT copied — they share references
 # =============================================================
