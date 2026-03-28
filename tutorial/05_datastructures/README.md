@@ -30,3 +30,16 @@
 Mutating methods (`sort`, `reverse`, `insert`, `remove`, `clear`, `append`, `extend`, `pop`)
 return `None` by design. This is Python's signal that the operation modifies the object
 **in place** rather than producing a new value. Recognising this pattern avoids many bugs.
+
+### 5.1.1. Using Lists as Stacks
+
+# Ch 5.1.1 Lists as Stacks Interview Notes
+
+#### Tips
+- `list.append`/`pop()` provide an O(1) LIFO stack, which is ideal for history, undo stacks, and simulating recursion.
+- `pop(0)`/`insert(0, x)` are O(n) and therefore slow; for queues or BFS you should use `from collections import deque`.
+- Example: `stack = []; stack.append(x); top = stack.pop()` (these operations do not return `None`).
+
+#### Pitfalls
+- Mutating methods like `sort`, `reverse`, `insert`, and `remove` all return `None`; for example, `result = lst.sort()` will make `result` be `None`.
+- Typical interview question: “list vs deque?” → For stacks (LIFO), lists are efficient; for queues (FIFO), use `deque` which supports O(1) operations at both ends.
