@@ -12,3 +12,13 @@ print("stack:", stack)
 print("pop 6:", stack.pop())
 print("pop 5:", stack.pop())
 print("final:", stack)
+
+history = ["google.com", "github.com"]
+history.append("stackoverflow.com")
+history.append("docs.python.org")
+print("history:", history)
+
+current = history.pop()
+print("back to:", current, "remaining:", history)
+current = history.pop()
+print("back to:", current, "remaining:", history)
