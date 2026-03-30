@@ -44,8 +44,6 @@ return `None` by design. This is Python's signal that the operation modifies the
 
 ### 5.1.2. Using Lists as Queues
 
-## Ch 5.1.2 — Using Lists as Queues
-
 ### Key Points
 
 - A queue follows **FIFO** (First-In, First-Out) order.
@@ -70,3 +68,57 @@ return `None` by design. This is Python's signal that the operation modifies the
 | pop (right)     | O(1)    | O(1)                |
 | pop (left)      | **O(n)**| **O(1)**            |
 | appendleft      | **O(n)**| **O(1)**            |
+
+
+### 5.1.3. List Comprehensions
+
+#### Core Syntax
+
+```
+[expression  for item in iterable]                   # basic
+[expression  for item in iterable  if condition]     # with filter
+[expression  for x in iter1  for y in iter2]         # cartesian product
+[expression  if cond else alt  for item in iterable] # ternary (no filter)
+```
+
+#### Why List Comprehensions Matter
+
+- More concise and readable than `for` + `append` for building lists.
+- Generally **faster** than equivalent `for`-loop code (CPython optimisation).
+- Interviewers expect you to reach for list comprehensions naturally in Python;
+  using a raw loop where a comprehension fits is considered non-idiomatic.
+
+#### Common Pitfalls
+
+- **`if` position changes semantics entirely:**
+  - `[x for x in nums if cond]` → filter (items can be *removed*)
+  - `[x if cond else y for x in nums]` → ternary (all items *kept*, value swapped)
+  Mixing these up is one of the most common mistakes in technical screens.
+- **Deep nesting hurts readability:** more than two `for` clauses in one
+  comprehension is a code smell. Extract to a helper function or use
+  `itertools.product` instead.
+- **Side-effect expressions are an anti-pattern:**
+  `[print(x) for x in items]` works but is misleading — use a plain `for` loop
+  if the goal is side effects, not building a list.
+- **Memory: list comprehension builds the full list in RAM.**
+  For large datasets, use a **generator expression** `(expr for x in iter)`
+  instead; it is lazy and O(1) in memory until iterated.
+
+#### List Comprehension vs Generator Expression
+
+| | List Comprehension `[...]` | Generator Expression `(...)` |
+|---|---|---|
+| Brackets | Square `[]` | Round `()` |
+| Returns | `list` (eager, all in RAM) | `generator` (lazy, one at a time) |
+| Reusable? | Yes | No — exhausted after one pass |
+| Best for | Small/medium data, random access | Large data, streaming, `sum()`/`max()` |
+
+#### Production / FastAPI Context
+
+- Use list comprehensions for shaping API response payloads:
+  `[item.dict() for item in db_results if item.is_active]`
+- Avoid comprehensions inside tight loops over large collections — prefer
+  `filter()` + `map()` with generators, or reach for `pandas`/`polars`.
+- For matrix/table operations, `zip(*matrix)` is cleaner than a nested
+  comprehension for transposing; idiomatic Python prefers built-ins.
+
