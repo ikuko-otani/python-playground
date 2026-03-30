@@ -83,3 +83,44 @@ print("[2-3] filter evens:", evens_filter)
 # Ternary: ALL items kept, but odd ones are replaced with 0
 evens_ternary = [x if x % 2 == 0 else 0 for x in nums]
 print("[2-3] ternary evens:", evens_ternary)
+
+# =============================================================
+# [3-1] Multiple 'for' clauses: Cartesian product
+#
+# Tutorial example: combine elements from two lists
+# Note: the order of 'for' clauses matches the order in a nested for-loop
+# =============================================================
+
+# Equivalent nested for-loop:
+# result = []
+# for x in [1, 2, 3]:
+#     for y in [3, 1, 4]:
+#         if x != y:
+#             result.append((x, y))
+combs = [(x, y) for x in [1, 2, 3] for y in [3, 1, 4] if x != y]
+print("[3-1] combinations:", combs)
+# [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+
+# =============================================================
+# [3-2] Tutorial example: flatten a matrix (list of lists)
+# This pattern appears often in backend data transformation
+# =============================================================
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+
+# Flatten: iterate over rows, then over each element in the row
+flat = [num for row in matrix for num in row]
+print("[3-2] flat matrix :", flat)
+# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# =============================================================
+# [3-3] The subexpression can reference variables from earlier 'for' clauses
+# =============================================================
+
+# Pairs where second element is double the first
+pairs = [(x, x * 2) for x in range(1, 6)]
+print("[3-3] doubled pairs:", pairs)
+# [(1, 2), (2, 4), (3, 6), (4, 8), (5, 10)]
