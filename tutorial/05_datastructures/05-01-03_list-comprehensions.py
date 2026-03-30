@@ -124,3 +124,58 @@ print("[3-2] flat matrix :", flat)
 pairs = [(x, x * 2) for x in range(1, 6)]
 print("[3-3] doubled pairs:", pairs)
 # [(1, 2), (2, 4), (3, 6), (4, 8), (5, 10)]
+
+# =============================================================
+# [4-1] Calling functions and methods in a list comprehension
+# Any callable can appear in the expression or the condition
+# =============================================================
+
+
+# Apply a user-defined function
+def celsius_to_fahrenheit(c: float) -> float:
+    # Convert Celsius temperature to Fahrenheit
+    return c * 9 / 5 + 32
+
+
+temps_c = [0, 20, 37, 100]
+temps_f = [celsius_to_fahrenheit(c) for c in temps_c]
+print("[4-1] temps_f     :", temps_f)
+
+# =============================================================
+# [4-2] List comprehension as an argument to another function
+# Common in production: pass directly to sum(), max(), join(), etc.
+# =============================================================
+
+total = sum(x**2 for x in range(10))  # generator expression inside sum()
+print("[4-2] sum of squares:", total)  # 285
+
+joined = ", ".join(w.upper() for w in ["hello", "world"])
+print("[4-2] joined        :", joined)
+
+# =============================================================
+# [4-3] Nested list comprehension — transpose a matrix
+#
+# Tutorial example: transpose rows and columns
+# Equivalent to: [[row[i] for row in matrix] for i in range(3)]
+# =============================================================
+
+matrix = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+]
+
+# Transpose using nested list comprehension
+transposed = [[row[i] for row in matrix] for i in range(4)]
+print("[4-3] transposed  :")
+for row in transposed:
+    print("  ", row)
+# [1, 5, 9]
+# [2, 6, 10]
+# [3, 7, 11]
+# [4, 8, 12]
+
+# Note: in production, prefer zip(*matrix) for transposing
+transposed_zip = list(zip(*matrix))
+print("[4-3] zip transpose:", transposed_zip)
+# [(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
