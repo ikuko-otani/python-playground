@@ -63,3 +63,53 @@ print("[2-2] tuple slice [1:3]:", seq_tuple[1:3])  # (20, 30)
 print("[2-2] tuple slice [1:3]:", seq_list[1:3])  # [20, 30]
 print("[2-2] 30 in tuple:", 30 in seq_tuple)  # True
 print("[2-2] tuple + tuple:", seq_tuple + (60, 70))  # (10, 20, 30, 40, 50, 60, 70)
+
+# =============================================================
+# [3-1] Tuple packing — values are "packed" into a tuple automatically
+# タプルパッキング：値が自動的にタプルにまとめられる
+# =============================================================
+
+packed = 1, 2, 3
+print("[3-1] packed:", packed, "| type:", type(packed))
+
+# =============================================================
+# [3-2] Sequence unpacking — the reverse of packing
+# The number of variables on the left must match the number of elements.
+# =============================================================
+
+point = (10, 20, 30)
+x, y, z = point
+print("[3-2] unpacked:", x, y, z)
+
+# Works with any sequence type (list, string, range)
+a, b, c = [100, 200, 300]
+print("[3-2] list unpack:", a, b, c)
+
+first, *rest = [1, 2, 3, 4, 5]
+print("[3-2] starred unpack — first:", first, "| rest:", rest)
+# 1 | [2, 3, 4, 5]
+
+# ValueError when counts don't match
+try:
+    p, q = (1, 2, 3)
+except ValueError as err:
+    print("[3-2] ValueError (expected):", err)
+    # too many values to unpack (expected 2, got 3)
+
+# =============================================================
+# [3-3] Practical pattern: swap variables without a temp variable
+# This is idiomatic Python; interviewers love to see this.
+# =============================================================
+
+a, b = 10, 20
+print("[3-3] before swap: a =", a, "| b =", b)
+a, b = b, a
+print("[3-3] after swap : a =", a, "| b =", b)
+
+# =============================================================
+# [3-4] Tuple unpacking in loops — common in real backend code
+# =============================================================
+
+pairs = [(1, "apple"), (2, "banana"), (3, "cherry")]
+for idx, fruit in pairs:
+    print(f"[3-4] {idx}: {fruit}")
