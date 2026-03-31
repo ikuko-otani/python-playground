@@ -28,7 +28,7 @@ print("[1-2] after del a[1:3] :", a)
 # [1, 1234.5]
 
 # =============================================================
-# [2-3] Clear the entire list with del a[:]
+# [1-3] Clear the entire list with del a[:]
 # del a[:]: removes ALL elements from the list (in-place)
 #
 # Equivalent to a.clear(), but del a[:] also works on slices of other sequences
@@ -40,7 +40,7 @@ print("[2-3] after  del b[:] :", b)
 # []
 
 # =============================================================
-# [2-4] Delete the variable itself
+# [1-4] Delete the variable itself
 # del a: removes the variable binding; accessing 'a' afterwards raises NameError
 #
 # Pitfall: del a is NOT the same as a = []
@@ -58,7 +58,7 @@ except NameError as err:
 # NameError: name 'c' is not defined
 
 # =============================================================
-# [3-1] Delete a key from a dictionary
+# [2-1] Delete a key from a dictionary
 # del d[key]: removes the key-value pair from the dict; raises KeyError if not found
 #
 # In FastAPI/backend work, this pattern appears when cleaning up response dicts
@@ -80,7 +80,7 @@ except KeyError as err:
     print("[3-1] KeyError after del :", err)
 
 # =============================================================
-# [3-2] Delete with a step slice (extended slicing)
+# [2-2] Delete with a step slice (extended slicing)
 # del a[::step]: removes every nth element from the list
 # =============================================================
 

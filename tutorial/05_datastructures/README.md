@@ -158,3 +158,45 @@ return `None` by design. This is Python's signal that the operation modifies the
   after processing), though the GC usually handles this automatically.
 - Knowing `del` exists—and understanding that CPython uses reference counting—shows
   depth of understanding in interviews.
+
+
+## 5.3. Tuples and Sequences
+
+#### Key Characteristics
+
+- Tuples are **immutable sequences**: once created, elements cannot be reassigned.
+  However, if a tuple contains mutable objects (e.g., lists), those inner objects
+  can still be mutated. Tuple immutability is shallow, not deep.
+- Tuples are **hashable** (if all elements are hashable), so they can be used as
+  dictionary keys or set members — lists cannot. This is a common interview question.
+
+#### Common Pitfalls
+
+- Single-element tuple requires a **trailing comma**: `(42,)` — not `(42)`.
+  Without the comma, Python treats it as a parenthesised expression, not a tuple.
+- Sequence unpacking raises `ValueError` if the number of variables doesn't match
+  the number of elements. Use starred assignment (`first, *rest = seq`) to handle
+  variable-length sequences safely.
+- Tuple immutability is often confused with "all contents are frozen".
+  A tuple holding a list still allows that list to be mutated.
+
+#### Practical Patterns
+
+- **Variable swap without a temp**: `a, b = b, a` — idiomatic Python; shows fluency.
+- **Loop unpacking**: `for key, value in items:` — standard pattern in backend data
+  processing (also used in `dict.items()` and SQLAlchemy row iteration).
+- **Function returning multiple values**: Python functions that return `x, y`
+  actually return a tuple. Callers can unpack directly: `width, height = get_size()`.
+- **Named tuples** (`collections.namedtuple` or `typing.NamedTuple`) extend plain
+  tuples with field names — useful for lightweight data containers in service layers
+  where full Pydantic models would be overkill.
+
+#### When to Choose tuple vs list
+
+| Use case | tuple | list |
+|---|---|---|
+| Fixed collection (coordinates, RGB, DB row) | ✅ Preferred | — |
+| Mutable collection (accumulating results) | — | ✅ Preferred |
+| Dictionary key or set member | ✅ Hashable | ❌ Not hashable |
+| Function returning multiple values | ✅ Idiomatic | — |
+| Sequence of homogeneous items to modify | — | ✅ Preferred |
