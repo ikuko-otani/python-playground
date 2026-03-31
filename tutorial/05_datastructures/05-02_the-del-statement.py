@@ -15,6 +15,7 @@ print("[1-1] original :", a)
 
 del a[0]
 print("[1-1] after del a[0] :", a)
+# [1, 66.25, 333, 1234.5]
 
 # =============================================================
 # [1-2] Delete a slice
@@ -24,3 +25,34 @@ print("[1-1] after del a[0] :", a)
 
 del a[1:3]
 print("[1-2] after del a[1:3] :", a)
+# [1, 1234.5]
+
+# =============================================================
+# [2-3] Clear the entire list with del a[:]
+# del a[:]: removes ALL elements from the list (in-place)
+#
+# Equivalent to a.clear(), but del a[:] also works on slices of other sequences
+# =============================================================
+b = [1, 2, 3, 4, 5]
+print("[2-3] before del b[:] :", b)
+del b[:]
+print("[2-3] after  del b[:] :", b)
+# []
+
+# =============================================================
+# [2-4] Delete the variable itself
+# del a: removes the variable binding; accessing 'a' afterwards raises NameError
+#
+# Pitfall: del a is NOT the same as a = []
+#   del a   → the name 'a' no longer exists in the namespace
+#   a = []  → 'a' still exists, but now points to an empty list
+# =============================================================
+
+c = [10, 20, 30]
+print("[2-4] before del c :", c)
+del c
+try:
+    print(c)
+except NameError as err:
+    print("[2-4] NameError after del c :", err)
+# NameError: name 'c' is not defined
