@@ -56,3 +56,38 @@ try:
 except NameError as err:
     print("[2-4] NameError after del c :", err)
 # NameError: name 'c' is not defined
+
+# =============================================================
+# [3-1] Delete a key from a dictionary
+# del d[key]: removes the key-value pair from the dict; raises KeyError if not found
+#
+# In FastAPI/backend work, this pattern appears when cleaning up response dicts
+# before returning to the client (though Pydantic models are usually preferred).
+# =============================================================
+
+user = {"id": 1, "name": "Alice", "password": "secret123"}
+print("[3-1] before del :", user)
+
+
+del user["password"]
+print("[3-1] after del user['password'] :", user)
+# {"id": 1, "name": "Alice"}
+
+# KeyError example — catch so the script doesn't crash
+try:
+    del user["email"]
+except KeyError as err:
+    print("[3-1] KeyError after del :", err)
+
+# =============================================================
+# [3-2] Delete with a step slice (extended slicing)
+# del a[::step]: removes every nth element from the list
+# =============================================================
+
+d = list(range(10))
+print("[3-2] original :", d)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+del d[::2]
+print("[3-2] after del d[::2] :", d)
+# [1, 3, 5, 7, 9]
