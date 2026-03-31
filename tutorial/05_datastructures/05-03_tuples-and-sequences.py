@@ -35,3 +35,31 @@ mutable_in_tuple = ([1, 2], [3, 4])
 mutable_in_tuple[0].append(99)  # This works! The list inside is still mutable
 print("[1-2] mutable inside tuple:", mutable_in_tuple)
 # ([1, 2, 99], [3, 4])
+
+# =============================================================
+# [2-1] Empty tuple and single-element tuple
+# Empty tuple: use ()
+# Single-element tuple: MUST have a trailing comma  ← common pitfall!
+# =============================================================
+
+empty = ()
+print("[2-1] empty tuple:", empty, "| len:", len(empty))  # () | 0
+
+single = ("hello",)  # trailing comma is required — without it, it's just a string
+not_a_tuple = "hello"
+
+print("[2-1] single-element tuple:", single, "| type:", type(single))
+# ('hello',) | <class 'tuple'>
+
+# =============================================================
+# [2-2] Sequence types: tuple, list, range — shared operations
+# All sequence types support: indexing, slicing, len(), in, +, *
+# =============================================================
+
+seq_tuple = (10, 20, 30, 40, 50)
+seq_list = [10, 20, 30, 40, 50]
+
+print("[2-2] tuple slice [1:3]:", seq_tuple[1:3])  # (20, 30)
+print("[2-2] tuple slice [1:3]:", seq_list[1:3])  # [20, 30]
+print("[2-2] 30 in tuple:", 30 in seq_tuple)  # True
+print("[2-2] tuple + tuple:", seq_tuple + (60, 70))  # (10, 20, 30, 40, 50, 60, 70)
