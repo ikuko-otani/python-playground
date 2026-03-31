@@ -122,3 +122,39 @@ return `None` by design. This is Python's signal that the operation modifies the
 - For matrix/table operations, `zip(*matrix)` is cleaner than a nested
   comprehension for transposing; idiomatic Python prefers built-ins.
 
+## 5.2. The del Statement
+
+#### What `del` Does
+
+- `del` removes a **name binding** or **object reference** from a namespace or sequence.
+- `del a[i]`  → removes element at index `i` from list `a` in-place; returns nothing.
+- `del a[i:j]`→ removes a slice; equivalent to `a[i:j] = []` but more explicit.
+- `del a[:]`  → empties the list in-place; equivalent to `a.clear()`.
+- `del a`     → removes the variable `a` from the namespace entirely.
+  Accessing `a` after this raises `NameError`.
+- `del d[key]`→ removes a key-value pair from a dict; raises `KeyError` if missing.
+
+#### `del` vs `pop()` — When to Use Which
+
+| | `del a[i]` | `a.pop(i)` |
+|---|---|---|
+| Returns the value? | ❌ No | ✅ Yes |
+| Typical use | Discard; value not needed | Need the removed value |
+| Readability | More explicit intent | Communicates "take out" |
+
+#### Common Pitfalls
+
+- `del a` ≠ `a = []`: `del a` removes the name itself; `a = []` just rebinds it to an empty list.
+- `del d[key]` raises `KeyError` if the key doesn't exist.
+  Use `d.pop(key, None)` as a safer alternative when the key may be absent.
+- Deleting from a list while iterating over it causes skipped elements or `IndexError`.
+  Collect indices to delete first, then delete in reverse order, or use a list comprehension.
+
+#### Practical Notes (FastAPI / Backend)
+
+- In FastAPI, you rarely manipulate raw dicts with `del`; Pydantic models with
+  `model.model_dump(exclude={"password"})` are the preferred pattern.
+- `del` is useful in **memory-sensitive** code (e.g., releasing large in-memory datasets
+  after processing), though the GC usually handles this automatically.
+- Knowing `del` exists—and understanding that CPython uses reference counting—shows
+  depth of understanding in interviews.
