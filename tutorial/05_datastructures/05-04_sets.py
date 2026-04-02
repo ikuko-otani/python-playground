@@ -27,3 +27,50 @@ empty_dict = {}
 empty_set = set()  # ← correct way to make an empty set
 print("[1-1] type({}):", type(empty_dict))  # <class 'dict'>
 print("[1-1] type(set()):", type(empty_set))  # <class 'set'>
+
+# =============================================================
+# [2-1] Set operations — tutorial's a / b example
+# =============================================================
+
+# Reuse a and b from section [1-1]
+
+# Difference: letters in a but not in b
+print("[2-1] a - b (difference)  :", a - b)  # {'r', 'd', 'b'}
+
+# Difference: letters in b but not in a
+print("[2-1] b - a (difference)  :", b - a)  # {'z', 'l', 'm'}
+
+# Union: letters in a or b (or both)
+print("[2-1] a | b (union)       :", a | b)  # {'l', 'c', 'm', 'z', 'a', 'r', 'b', 'd'}
+
+# Intersection: letters in both a and b
+print("[2-1] a & b (intersection):", a & b)  # {'a', 'c'}
+
+# Symmetric difference: letters in a or b but not both
+print("[2-1] a ^ b (sym. diff.)  :", a ^ b)  # {'b', 'r', 'm', 'd', 'z', 'l'
+
+# =============================================================
+# [2-2] Equivalent methods — same result, different style
+# =============================================================
+
+print("[2-2] a.difference(b)          :", a.difference(b))
+print("[2-2] b.difference(a)          :", b.difference(a))
+print("[2-2] a.union(b)               :", a.union(b))
+print("[2-2] a.intersection(b)        :", a.intersection(b))
+print("[2-2] a.symmetric_difference(b):", a.symmetric_difference(b))
+
+# KEY DIFFERENCE: operators require both sides to be sets.
+# Methods accept ANY iterable on the right side.
+print("[2-2] a.union(['x', 'y']):", a.union(["x", "y"]))
+print("[2-2] a.union(('s', 't')):", a.union(("s", "t")))
+
+# =============================================================
+# [2-3] Subset / Superset checks
+# =============================================================
+
+x = {1, 2, 3}
+y = {1, 2, 3, 4, 5}
+print("[2-3] x.issubset(y)   :", x.issubset(y))  # True  x ⊆ y
+print("[2-3] y.issuperset(x) :", y.issuperset(x))  # True  y ⊇ x
+print("[2-3] x <= y          :", x <= y)  # True  (same as issubset)
+print("[2-3] x < y           :", x < y)  # True  (strict subset: x ⊊ y)
