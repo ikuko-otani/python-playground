@@ -74,3 +74,40 @@ print("[2-3] x.issubset(y)   :", x.issubset(y))  # True  x ⊆ y
 print("[2-3] y.issuperset(x) :", y.issuperset(x))  # True  y ⊇ x
 print("[2-3] x <= y          :", x <= y)  # True  (same as issubset)
 print("[2-3] x < y           :", x < y)  # True  (strict subset: x ⊊ y)
+
+# =============================================================
+# [3-1] Mutating methods: add, remove, discard, pop, clear
+# =============================================================
+
+s = {"apple", "banana", "cherry"}
+
+# add: adds a single element; no-op if already present
+s.add("date")
+s.add("apple")  # already in set — no error, no duplicate
+print("[3-1] after add:", s)
+
+# remove vs discard
+# Use remove() when absence is a bug (you WANT the KeyError).
+# Use discard() when absence is acceptable (safe delete).
+
+# remove: removes element; raises KeyError if not found
+s.remove("banana")
+print("[3-1] after remove('banana'):", s)
+
+try:
+    s.remove("mango")  # not in set → KeyError
+except KeyError as err:
+    print("[3-1] remove KeyError:", err)
+
+# discard: removes element; SILENTLY does nothing if not found
+s.discard("mango")  # no error even though 'mango' is absent
+print("[3-1] after discard('mango') — no error:", s)
+
+# pop: removes and returns an ARBITRARY element (sets are unordered!)
+popped = s.pop()
+print("[3-1] popped element:", popped, "| remaining:", s)
+
+# clear: remove all elements from the set
+t = {1, 2, 3}
+t.clear()
+print("[4-1] after clear():", t)  # set()
