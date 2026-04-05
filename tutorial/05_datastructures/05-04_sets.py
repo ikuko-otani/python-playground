@@ -110,4 +110,22 @@ print("[3-1] popped element:", popped, "| remaining:", s)
 # clear: remove all elements from the set
 t = {1, 2, 3}
 t.clear()
-print("[4-1] after clear():", t)  # set()
+print("[3-1] after clear():", t)  # set()
+
+# =============================================================
+# [4-1] Set comprehension — similar to list comprehension
+# Ref: tutorial mentions {x for x in 'abracadabra' if x not in 'abc'}
+# =============================================================
+
+# Tutorial's official example
+result = {x for x in "abracadabra" if x not in "abc"}
+print("[4-1] set comprehension:", result)  # {'r', 'd'}
+
+# Practical example: unique even squares
+even_squares = {x**2 for x in range(10) if x % 2 == 0}
+print("[4-1] even squares set:", even_squares)  # {0, 64, 4, 36, 16
+
+# Use case: extract unique domain names from a list of emails
+emails = ["alice@example.com", "bob@example.com", "carol@test.org", "dave@test.org"]
+domains = {email.split("@")[1] for email in emails}
+print("[4-1] unique domains:", domains)  # {'test.org', 'example.com'}
