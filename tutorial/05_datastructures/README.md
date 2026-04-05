@@ -200,3 +200,27 @@ return `None` by design. This is Python's signal that the operation modifies the
 | Dictionary key or set member | ✅ Hashable | ❌ Not hashable |
 | Function returning multiple values | ✅ Idiomatic | — |
 | Sequence of homogeneous items to modify | — | ✅ Preferred |
+
+## 5.4. Sets
+
+#### Core Characteristics
+- A set is an **unordered collection of unique elements** — no duplicates, no guaranteed order.
+- Backed by a hash table internally; membership test `x in s` is **O(1) average** vs O(n) for lists.
+- Elements must be **hashable** (immutable): `str`, `int`, `float`, `tuple` are OK; `list`, `dict`, `set` are NOT.
+
+#### Common Pitfalls
+- `{}` creates an **empty dict**, NOT an empty set. Always use `set()` for an empty set.
+- `set.remove(x)` raises `KeyError` if `x` is absent; use `set.discard(x)` for a safe silent delete.
+- `set.pop()` removes an **arbitrary** element — never rely on which element gets removed (sets are unordered).
+- Set operators (`|`, `&`, `-`, `^`) require **both operands to be sets**. Methods (`.union()`, `.intersection()`, etc.) accept any iterable on the right-hand side — prefer methods when mixing types.
+- Sets are **mutable** but their elements must be immutable. To use a set as a dict key or put it inside another set, use `frozenset()` instead.
+
+#### When to Reach for Sets in Backend Code
+- **Deduplication**: `unique_ids = list(set(raw_ids))` — fast O(n) dedupe.
+- **Membership testing at scale**: checking if a user ID is in a large allow-list → set lookup beats list lookup dramatically.
+- **Graph / BFS / DFS**: `visited = set()` is the standard pattern for tracking visited nodes in coding interviews.
+- **Set-difference for delta detection**: `new_items = incoming_set - existing_set` is a clean pattern for sync/upsert logic in data pipelines.
+
+#### `frozenset` in Brief
+- Immutable version of `set`; hashable → can be used as a dict key or as a set element.
+- Useful for caching results keyed by a collection of IDs (e.g., `frozenset(user_ids)` as a cache key).
