@@ -38,3 +38,17 @@ print(result_none)  # None
 print(result_default)  # 0
 print(is_guido_in)  # True
 print(is_jack_out)  # False
+
+
+# ============================================================
+# Block 3: Listing keys with list() and sorted()
+# ============================================================
+
+# list(d) returns keys in insertion order
+keys_list = list(tel)
+
+# sorted(d) returns keys in sorted order
+keys_sorted = sorted(tel)
+
+print(keys_list)  # ['jack', 'guido']
+print(keys_sorted)  # ['guido', 'jack']
