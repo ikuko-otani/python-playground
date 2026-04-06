@@ -66,3 +66,18 @@ tel3 = dict(sape=4139, guido=4127, jack=4098)
 
 print(tel2)  # {'sape': 4139, 'guido': 4127, 'jack': 4098}
 print(tel3)  # {'sape': 4139, 'guido': 4127, 'jack': 4098}
+
+
+# ============================================================
+# Block 5: Dict comprehension
+# ============================================================
+
+# Create a dict mapping numbers to their squares
+squares: dict[int, int] = {x: x**2 for x in (2, 4, 6)}
+
+# Practical example: invert a dictionary (swap keys and values)
+original = {"a": 1, "b": 2, "c": 3}
+inverted: dict[int, str] = {v: k for k, v in original.items()}
+
+print(squares)  # {2: 4, 4: 16, 6: 36}
+print(inverted)  # {1: 'a', 2: 'b', 3: 'c'}
