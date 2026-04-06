@@ -52,3 +52,17 @@ keys_sorted = sorted(tel)
 
 print(keys_list)  # ['jack', 'guido']
 print(keys_sorted)  # ['guido', 'jack']
+
+
+# ============================================================
+# Block 4: Building dictionaries with dict() constructor
+# ============================================================
+
+# Build from a list of (key, value) tuples
+tel2 = dict([("sape", 4139), ("guido", 4127), ("jack", 4098)])
+
+# Build using keyword arguments (keys must be valid identifiers)
+tel3 = dict(sape=4139, guido=4127, jack=4098)
+
+print(tel2)  # {'sape': 4139, 'guido': 4127, 'jack': 4098}
+print(tel3)  # {'sape': 4139, 'guido': 4127, 'jack': 4098}
