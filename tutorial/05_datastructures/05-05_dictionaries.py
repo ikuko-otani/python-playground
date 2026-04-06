@@ -16,8 +16,25 @@ tel["guido"] = 4127
 value = tel["jack"]
 
 # Delete a key-value pair with del
-# 日本語訳：del でキーと値のペアを削除する
 del tel["sape"]
 
 print(tel)  # {'jack': 4098, 'guido': 4127}
 print(value)  # 4098
+
+
+# ============================================================
+# Block 2: Safe access with get(), key existence check with in
+# ============================================================
+
+# Use get() to avoid KeyError — returns None or a default value
+result_none = tel.get("irv")  # key does not exist -> None
+result_default = tel.get("irv", 0)  # key does not exist -> 0
+
+# Check if a key exists using the in keyword
+is_guido_in = "guido" in tel
+is_jack_out = "jack" not in tel
+
+print(result_none)  # None
+print(result_default)  # 0
+print(is_guido_in)  # True
+print(is_jack_out)  # False
