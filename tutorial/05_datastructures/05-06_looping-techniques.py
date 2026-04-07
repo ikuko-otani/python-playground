@@ -30,4 +30,22 @@ for q, a in zip(questions, answers):
 # ============================================================
 
 for i in reversed(range(1, 10, 2)):
-    print(i)
+    print(i, end=" ")
+print()
+
+# ============================================================
+# 5. sorted() — Loop over a sorted copy of a sequence
+# ============================================================
+
+basket = ["apple", "orange", "apple", "pear", "orange", "banana"]
+for f in sorted(basket):
+    print(f, end=" ")
+print()
+
+# ============================================================
+# 6. sorted(set(...)) — Loop over unique sorted elements
+# ============================================================
+
+for f in sorted(set(basket)):
+    print(f, end=" ")
+print()
