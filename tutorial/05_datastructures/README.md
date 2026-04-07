@@ -204,11 +204,13 @@ return `None` by design. This is Python's signal that the operation modifies the
 ## 5.4. Sets
 
 #### Core Characteristics
+
 - A set is an **unordered collection of unique elements** — no duplicates, no guaranteed order.
 - Backed by a hash table internally; membership test `x in s` is **O(1) average** vs O(n) for lists.
 - Elements must be **hashable** (immutable): `str`, `int`, `float`, `tuple` are OK; `list`, `dict`, `set` are NOT.
 
 #### Common Pitfalls
+
 - `{}` creates an **empty dict**, NOT an empty set. Always use `set()` for an empty set.
 - `set.remove(x)` raises `KeyError` if `x` is absent; use `set.discard(x)` for a safe silent delete.
 - `set.pop()` removes an **arbitrary** element — never rely on which element gets removed (sets are unordered).
@@ -216,11 +218,35 @@ return `None` by design. This is Python's signal that the operation modifies the
 - Sets are **mutable** but their elements must be immutable. To use a set as a dict key or put it inside another set, use `frozenset()` instead.
 
 #### When to Reach for Sets in Backend Code
+
 - **Deduplication**: `unique_ids = list(set(raw_ids))` — fast O(n) dedupe.
 - **Membership testing at scale**: checking if a user ID is in a large allow-list → set lookup beats list lookup dramatically.
 - **Graph / BFS / DFS**: `visited = set()` is the standard pattern for tracking visited nodes in coding interviews.
 - **Set-difference for delta detection**: `new_items = incoming_set - existing_set` is a clean pattern for sync/upsert logic in data pipelines.
 
 #### `frozenset` in Brief
+
 - Immutable version of `set`; hashable → can be used as a dict key or as a set element.
 - Useful for caching results keyed by a collection of IDs (e.g., `frozenset(user_ids)` as a cache key).
+
+## 5.5 Dictionaries
+
+- `dict[key]` vs `dict.get(key, default)`: `[]` raises `KeyError`; `.get()` returns `None` or default — always prefer `.get()` in production code
+- `dict.get()` default argument: use a mutable default carefully — `d.get(k, [])` returns a new `[]` each time (safe), unlike a default param in a function
+- `key in dict` is O(1) — dict lookup is hash-based, not linear search
+- `list(d)` returns keys in **insertion order** (guaranteed since Python 3.7)
+- Dict comprehension `{k: v for k, v in iterable}`: idiomatic for transforming or filtering dicts
+- Inverting a dict: `{v: k for k, v in d.items()}` — only works correctly when values are unique
+- Keys must be **immutable** (str, int, tuple) — `list` or `dict` as a key raises `TypeError`
+- `dict()` constructor patterns — two common forms worth knowing for interviews:
+  - `dict([(k1, v1), (k2, v2)])` — from list of tuples
+  - `dict(key=value)` — keyword args (keys must be valid identifiers)
+
+## 5.6 Looping Techniques
+
+- `dict.items()`: returns a view object (not a copy); efficient for large dicts
+- `enumerate(iterable, start=0)`: use `start=1` when 1-based index is needed
+- `zip()` stops at the shortest iterable; use `itertools.zip_longest` for equal-length guarantee
+- `sorted()` vs `list.sort()`: `sorted()` returns a new list (non-destructive)
+- `sorted(set(x))`: Pythonic idiom for deduplication + sort
+- Never modify a list while iterating over it — create a new list instead
