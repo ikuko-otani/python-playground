@@ -61,3 +61,23 @@ print("'' and 'hello'", "" and "hello")
 
 # 'hello' — 'hi' is truthy, evaluates right side
 print("'hi' and 'hello':", "hi" and "hello")
+
+# -------------------------------------------------------
+# 6. Assigning boolean expressions to variables
+# 日本語訳：Boolean 式の結果を変数に代入する（first-truthy / last-falsy パターン）
+# -------------------------------------------------------
+
+string1 = ""
+string2 = ""
+string3 = "Python"
+
+non_null = string1 or string2 or string3
+print("non_null:", non_null)  # 'Python' — first truthy value in the chain
+
+# `or` chain picks the first truthy value; useful as a default fallback.
+# Example: value = user_input or "default"
+# Note: For more explicit assignment, use the walrus operator :=
+
+x_val: int
+if (x_val := 10) > 5:
+    print(f"x_val={x_val} is greater than 5")
