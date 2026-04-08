@@ -44,3 +44,20 @@ print("False or True:", False or True)  # True
 print(
     "not False and True or False:", not False and True or False
 )  # True — not > and > or
+
+# -------------------------------------------------------
+# 5. Short-circuit evaluation
+# Returns the last evaluated operand, not True/False
+# -------------------------------------------------------
+
+# 'hello' — 0 is falsy, so evaluates right side
+print("0 or 'hello':", 0 or "hello")
+
+# 'hi' — 'hi' is truthy, short-circuits
+print("'hi' or 'hello':", "hi" or "hello")
+
+# '' — '' is falsy, short-circuits
+print("'' and 'hello'", "" and "hello")
+
+# 'hello' — 'hi' is truthy, evaluates right side
+print("'hi' and 'hello':", "hi" and "hello")
