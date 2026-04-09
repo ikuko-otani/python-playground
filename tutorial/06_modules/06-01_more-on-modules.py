@@ -13,3 +13,19 @@ print(f"math.sqrt(16) = {result}")  # 4.0
 
 pi_val = math.pi
 print(f"math.pi = {pi_val}")  # 3.141592653589793
+
+# =============================================================================
+# Section 2: from module import name
+# =============================================================================
+# Import specific names directly into the importing module's namespace.
+
+from math import floor, sqrt
+
+print(sqrt(25))  # 5.0 — no 'math.' prefix needed
+print(floor(3.9))  # 3
+
+# =============================================================================
+# Section 3: from module import * (wildcard import)
+# =============================================================================
+# Imports all names that do not begin with an underscore (_).
+# WARNING: Avoid in production code — pollutes the local namespace.
