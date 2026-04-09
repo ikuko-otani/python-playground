@@ -29,3 +29,17 @@ print(floor(3.9))  # 3
 # =============================================================================
 # Imports all names that do not begin with an underscore (_).
 # WARNING: Avoid in production code — pollutes the local namespace.
+
+# =============================================================================
+# Section 4: import as alias
+# =============================================================================
+# Rename a module or name upon import for convenience.
+
+# shorter alias for datetime module
+import datetime as dt
+
+# 'as' for a specific name:
+from math import factorial as fact
+
+print(fact(5))  # 120
+print(dt.date.today())
