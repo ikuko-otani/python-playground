@@ -20,7 +20,6 @@ print("[1,2,3] < [1,3]:", result4)  # True
 
 # -------------------------------------------------------
 # Block 2: Lexicographical comparison of tuples
-# 日本語訳：タプルの辞書式比較
 # -------------------------------------------------------
 
 # Tuples are compared the same way as lists
@@ -37,11 +36,9 @@ print("(1,2,3) == (1.0,2.0,3.0):", result8)  # True
 
 # -------------------------------------------------------
 # Block 3: String comparison by Unicode code point
-# 日本語訳：文字列の比較（Unicodeコードポイント順）
 # -------------------------------------------------------
 
 # Strings are compared character by character using Unicode code points
-# 日本語訳：文字列は文字ごとに Unicode コードポイントで比較される
 result9 = "ABC" < "C"
 result10 = "C" < "Pascal"
 result11 = "Pascal" < "Python"
@@ -53,3 +50,17 @@ print("'Pascal' < 'Python':", result11)  # True
 print("'abc' > 'ABC':", result12)  # True
 
 print(ord("A"), ord("a"), ord("C"))  # 65 97 67
+
+
+# -------------------------------------------------------
+# Block 4: Comparing sequences of different lengths
+# -------------------------------------------------------
+
+# If one sequence is a prefix of the other, the shorter one is smaller
+result13 = [1, 2] < [1, 2, 3]
+result14 = (1,) < (1, 0)
+result15 = "ab" < "abc"
+
+print("[1,2] < [1,2,3]:", result13)  # True
+print("(1,) < (1,0):", result14)  # True
+print("'ab' < 'abc':", result15)  # True
