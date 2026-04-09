@@ -43,3 +43,19 @@ from math import factorial as fact
 
 print(fact(5))  # 120
 print(dt.date.today())
+
+# =============================================================================
+# Section 5: if __name__ == "__main__" pattern
+# スクリプトとしても実行できるようにする慣用パターン
+# =============================================================================
+# When a module is run directly, __name__ is set to "__main__".
+# When imported, __name__ is the module's file name (without .py).
+
+
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+
+if __name__ == "__main__":
+    print(greet("Aida"))
+    print("Running as a script, not as an imported module.")
