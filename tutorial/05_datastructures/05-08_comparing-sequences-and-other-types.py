@@ -33,3 +33,23 @@ print("(1,2,3) < (1,2,4):", result5)  # True
 print("(1,2,3,4) < (1,2,4):", result6)  # True
 print("(1,2) < (1,2,-1):", result7)  # True
 print("(1,2,3) == (1.0,2.0,3.0):", result8)  # True
+
+
+# -------------------------------------------------------
+# Block 3: String comparison by Unicode code point
+# 日本語訳：文字列の比較（Unicodeコードポイント順）
+# -------------------------------------------------------
+
+# Strings are compared character by character using Unicode code points
+# 日本語訳：文字列は文字ごとに Unicode コードポイントで比較される
+result9 = "ABC" < "C"
+result10 = "C" < "Pascal"
+result11 = "Pascal" < "Python"
+result12 = "abc" > "ABC"  # lowercase > uppercase in Unicode
+
+print("'ABC' < 'C':", result9)  # True
+print("'C' < 'Pascal':", result10)  # True
+print("'Pascal' < 'Python':", result11)  # True
+print("'abc' > 'ABC':", result12)  # True
+
+print(ord("A"), ord("a"), ord("C"))  # 65 97 67
