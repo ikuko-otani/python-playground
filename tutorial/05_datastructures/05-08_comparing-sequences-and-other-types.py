@@ -64,3 +64,24 @@ result15 = "ab" < "abc"
 print("[1,2] < [1,2,3]:", result13)  # True
 print("(1,) < (1,0):", result14)  # True
 print("'ab' < 'abc':", result15)  # True
+
+
+# -------------------------------------------------------
+# Block 5: Comparing different types raises TypeError
+# 日本語訳：異なる型同士の大小比較は TypeError を発生する
+# -------------------------------------------------------
+
+# == and != work across types, but < > raise TypeError for unorderable types
+
+result16 = (1, 2, 3) == [1, 2, 3]  # False: different types
+result17 = (1, 2, 3) != [1, 2, 3]  # True
+
+print("(1,2,3) == [1,2,3]:", result16)  # False
+print("(1,2,3) != [1,2,3]:", result17)  # True
+
+# TypeError: '<' not supported between instances of 'tuple' and 'list'
+
+try:
+    result_err = (1, 2) < [1, 2]
+except TypeError as e:
+    print("TypeError caught:", e)
