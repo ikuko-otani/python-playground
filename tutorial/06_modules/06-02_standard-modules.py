@@ -19,3 +19,13 @@ elif sys.platform == "darwin":
     print("Running on macOS")
 else:
     print(f"Running on: {sys.platform}")
+
+# sys.path is a list of strings specifying the module search path
+print(sys.path)
+
+# Append a custom path to sys.path
+sys.path.append("/tmp/my_modules")
+print(sys.path[-1])
+
+# Remove the custom path (revert for safety)
+sys.path.pop()
