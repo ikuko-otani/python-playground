@@ -57,5 +57,17 @@ def greet(name: str) -> str:
 
 
 if __name__ == "__main__":
-    print(greet("Aida"))
+    print(greet("World"))
     print("Running as a script, not as an imported module.")
+
+# =============================================================================
+# Section 6: sys.path — module search path
+# =============================================================================
+# sys.path is a list of directories where Python looks for modules.
+# It can be modified at runtime, but prefer PYTHONPATH env var in production.
+
+import sys
+
+print("sys.path (first 3 entries):")
+for p in sys.path[:3]:
+    print(f"  {p}")
