@@ -71,3 +71,15 @@ import sys
 print("sys.path (first 3 entries):")
 for p in sys.path[:3]:
     print(f"  {p}")
+
+# =============================================================================
+# Section 7: importlib.reload — reloading a module
+# =============================================================================
+# Use importlib.reload() when you need to re-execute a module's code.
+# Useful in interactive sessions; rarely needed in production.
+
+import importlib
+import math as _math_reload_target
+
+importlib.reload(_math_reload_target)
+print(f"math module reloaded: {_math_reload_target.__name__}")
