@@ -36,3 +36,11 @@ print(sys.argv)
 # Safely access command-line arguments with default value
 name: str = sys.argv[1] if len(sys.argv) > 1 else "world"
 print(f"Hello, {name}!")
+
+# sys.exit() raises SystemExit exception and exits the process
+try:
+    sys.exit(0)
+except SystemExit as e:
+    print(f"sys.exit() called with code: {e}")
+
+# NOTE: In real scripts, sys.exit(1) signals an error to the shell
