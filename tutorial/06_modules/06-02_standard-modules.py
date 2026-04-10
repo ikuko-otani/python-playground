@@ -29,3 +29,10 @@ print(sys.path[-1])
 
 # Remove the custom path (revert for safety)
 sys.path.pop()
+
+# sys.argv is a list of command-line arguments passed to the script
+print(sys.argv)
+
+# Safely access command-line arguments with default value
+name: str = sys.argv[1] if len(sys.argv) > 1 else "world"
+print(f"Hello, {name}!")
