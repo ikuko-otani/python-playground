@@ -24,3 +24,11 @@ my_list = [1, 2, 3]
 # Call dir() with no arguments
 current_scope_names: list[str] = dir()
 print("current_scope_names:", current_scope_names)
+
+# -------------------------------------------------------
+# Section 3: dir() with builtins — built-in names
+# -------------------------------------------------------
+
+# Call dir() on the builtins module
+builtin_names: list[str] = dir(builtins)
+print("builtin_names:", builtin_names)
