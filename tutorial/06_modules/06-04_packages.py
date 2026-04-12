@@ -86,3 +86,35 @@ from .routers import items, users  # relative import (same effect)
 
 # Pitfall: relative imports do NOT work in the __main__ module.
 # Scripts run directly (python script.py) must use absolute imports.
+
+# =============================================================================
+# [Block 4] FastAPI Real-world Connection — Package patterns in production
+# =============================================================================
+# FastAPI projects use exactly the same package/subpackage structure.
+#
+# Typical FastAPI project layout:
+#
+# app/
+#     __init__.py
+#     main.py            <- FastAPI() instance
+#     routers/           <- Subpackage for route handlers
+#         __init__.py
+#         users.py
+#         items.py
+#     models/            <- Subpackage for SQLAlchemy/Pydantic models
+#         __init__.py
+#         user.py
+#         item.py
+#     core/              <- Subpackage for config, security, DB session
+#         __init__.py
+#         config.py
+#         security.py
+
+
+app.include_router(users.router)
+app.include_router(items.router)
+
+from ..core.security import get_current_user  # relative: app/core/security.py
+
+# In app/routers/users.py:
+from ..models.user import UserSchema  # relative: go up to app/, then models/
