@@ -61,3 +61,28 @@ __all__ = ["echo", "surround", "reverse"]
 
 def reverse(msg: str) -> str:  # <-- shadows the reverse.py submodule!
     return msg[::-1]
+
+
+# =============================================================================
+# [Block 3] Intra-package References — Absolute vs Relative Imports
+# =============================================================================
+# Inside a package, you can use absolute or relative imports.
+
+# Core logic: how FastAPI imports routers (from . import pattern)
+# In app/main.py:
+from app.routers import items, users  # absolute import
+
+from .. import formats  # .. = parent package (sound/)
+from ..filters import equalizer  # ../filters/ = sibling subpackage
+
+# Core logic: relative import syntax (from surround.py inside effects/)
+from . import echo  # . = current package (effects/)
+from .routers import items, users  # relative import (same effect)
+
+# Key rule: relative imports use leading dots to indicate hierarchy.
+# .   => same package
+# ..  => parent package
+# ... => grandparent package
+
+# Pitfall: relative imports do NOT work in the __main__ module.
+# Scripts run directly (python script.py) must use absolute imports.
