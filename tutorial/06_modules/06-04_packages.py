@@ -40,3 +40,24 @@ echo.echofilter(input, output, delay=0.7, atten=4)
 from sound.effects.echo import echofilter
 
 echofilter(input, output, delay=0.7, atten=4)
+
+# =============================================================================
+# [Block 2] __init__.py and __all__ — Controlling 'from package import *'
+# =============================================================================
+# __all__ in __init__.py controls what 'from package import *' exports.
+#
+# In sound/effects/__init__.py:
+
+# Core logic: defining __all__ in __init__.py
+# __all__ = ["echo", "surround", "reverse"]
+# This means: from sound.effects import * => imports echo, surround, reverse
+
+# Pitfall: if a name in __all__ is shadowed by a local definition,
+# the local definition takes precedence over the submodule.
+
+# Example of shadowing (in __init__.py):
+__all__ = ["echo", "surround", "reverse"]
+
+
+def reverse(msg: str) -> str:  # <-- shadows the reverse.py submodule!
+    return msg[::-1]
