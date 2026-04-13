@@ -40,3 +40,24 @@ count = 13
 area = "living room"
 print(f"Debugging {bugs=} {count=} {area=}")
 # Debugging bugs='roaches' count=13 area='living room'
+
+# =============================================================================
+# 7.1.2 The str.format() Method
+# (f-string preferred in modern Python)
+# =============================================================================
+
+# --- Block 4: str.format() positional and keyword args ---
+print("{0} and {1}".format("spam", "eggs"))
+
+print(
+    "This {food} is {adjective}.".format(food="spam", adjective="absolutely horrible")
+)
+
+# --- Block 5: Passing dict with ** unpacking ---
+
+table2: dict[str, int] = {"Sjoerd": 4127, "Jack": 4098, "Dcab": 8637678}
+print("Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}".format(**table2))
+
+# Number table using str.format() with width specifiers
+for x in range(1, 11):
+    print("{0:2d} {1:3d} {2:4d}".format(x, x * x, x * x * x))
