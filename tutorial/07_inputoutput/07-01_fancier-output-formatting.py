@@ -61,3 +61,21 @@ print("Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}".format(**table2))
 # Number table using str.format() with width specifiers
 for x in range(1, 11):
     print("{0:2d} {1:3d} {2:4d}".format(x, x * x, x * x * x))
+
+# =============================================================================
+# 7.1.3 Manual String Formatting
+# =============================================================================
+
+# rjust(), ljust(), center() pad a string in a field of given width.
+# zfill() pads a numeric string with leading zeros.
+
+print("12".zfill(5))  # 00012
+print("-3.14".zfill(7))  # -003.14
+
+# =============================================================================
+# 7.1.4 Old String Formatting (% operator)
+# =============================================================================
+
+# The % operator (printf-style) is the legacy formatting method.
+
+print("The value of pi is approximately %5.7f." % math.pi)
