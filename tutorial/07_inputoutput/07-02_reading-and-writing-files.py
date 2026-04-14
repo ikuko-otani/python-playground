@@ -47,3 +47,22 @@ print(repr(line2))
 with open(filepath, "r", encoding="utf-8") as f:
     for line in f:
         print(line, end="")
+
+# f.readlines() — read all lines into a list
+with open(filepath, "r", encoding="utf-8") as f:
+    lines: list[str] = f.readlines()
+print(lines)
+
+# f.write(string) — write string, returns number of characters written
+with open(filepath, "a", encoding="utf-8") as f:
+    n: int = f.write("Appended line.\n")
+print(n)
+
+# f.tell() and f.seek(offset, whence)
+with open(filepath, "rb") as f:
+    # binary mode required for seek with non-0 whence
+    f.seek(0, 2)  # move to end of file
+    end_pos: int = f.tell()
+    f.seek(0)  # back to start
+    start_pos: int = f.tell()
+print(f"File size: {end_pos} bytes, start pos: {start_pos}")
