@@ -26,3 +26,24 @@ with open(filepath, "w", encoding="utf-8") as f:
 with open(filepath, "r", encoding="utf-8") as f:
     contents: str = f.read()
 print(contents)
+
+# ============================================================
+# 7.2.1 Methods of File Objects
+# ============================================================
+
+# f.read(size) — read entire file or up to 'size' bytes/chars
+with open(filepath, "r", encoding="utf-8") as f:
+    chunk: str = f.read(5)
+print(chunk)  # 'Hello'
+
+# f.readline() — read one line at a time
+with open(filepath, "r", encoding="utf-8") as f:
+    line1: str = f.readline()
+    line2: str = f.readline()
+print(repr(line1))
+print(repr(line2))
+
+# Iterating over a file object — memory-efficient line reading
+with open(filepath, "r", encoding="utf-8") as f:
+    for line in f:
+        print(line, end="")
