@@ -66,3 +66,28 @@ with open(filepath, "rb") as f:
     f.seek(0)  # back to start
     start_pos: int = f.tell()
 print(f"File size: {end_pos} bytes, start pos: {start_pos}")
+
+# ============================================================
+# 7.2.2 Saving structured data with json
+# ============================================================
+
+import json
+
+# json.dumps(x) — serialize Python object to JSON string
+data: dict = {"name": "Bill", "city": "Berlin", "score": 42}
+json_str: str = json.dumps(data)
+print(json_str)
+
+# json.dump(x, f) — write serialized object to a file
+jsonfilepath = os.path.join(script_dir, "data.json")
+with open(jsonfilepath, "w", encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+# json.load(f) — deserialize JSON file back to Python object
+with open(jsonfilepath, "r", encoding="utf-8") as f:
+    loaded: dict = json.load(f)
+print(loaded)
+print(type(loaded))  # <class 'dict'>
+
+# Note: pickle can serialize arbitrary Python objects (not just JSON-compatible types),
+# but it is NOT human-readable and NOT safe for untrusted data.
