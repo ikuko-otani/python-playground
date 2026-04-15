@@ -125,3 +125,41 @@ try:
 except ValueError as e:
     print("[8.5] ValueError:", e)
     print("[8.5] __cause__:", e.__cause__)
+
+# =============================================================
+# [8.6] User-defined Exceptions
+# Custom exception classes inherit from Exception (or its subclasses).
+# Best practice: create a base class for your app, then specific ones.
+# =============================================================
+
+print("--- 8.6 User-defined Exceptions ---")
+
+
+class AppError(Exception):
+    """Base exception for this application"""
+
+    pass
+
+
+class NotFoundError(AppError):
+    """Raised when a resource is not found."""
+
+    def __init__(self, resource: str, resource_id: int) -> None:
+        self.resource = resource
+        self.resource_id = resource_id
+        super().__init__(f"{resource} with id={resource_id} not found")
+
+
+class ValidationError(AppError):
+    """Raised when input validation fails"""
+
+    pass
+
+
+try:
+    raise NotFoundError("User", 42)
+except NotFoundError as e:
+    print(f"[8.6] NotFoundError: {e}")
+    print(f"[8.6] resource={e.resource}, id={e.resource_id}")
+except AppError as e:
+    print("[8.6] Generic AppError:", e)
