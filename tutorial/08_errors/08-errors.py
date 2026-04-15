@@ -35,3 +35,37 @@ try:
     "2" + 2
 except TypeError as e:
     print("TypeError:", e)
+
+# =============================================================
+# [8.3] Handling Exceptions
+# try/except/else/finally — the core pattern for exception handling
+# else: runs only if NO exception was raised in the try block
+# finally: ALWAYS runs, whether or not an exception occurred
+# =============================================================
+
+print("--- 8.3 Handling Exceptions ---")
+
+
+def divide(x: float, y: float) -> float | None:
+    try:
+        result = x / y
+    except ZeroDivisionError:
+        print("[8.3] Cannot divide by zero!")
+        return None
+    else:
+        print("[8.3] Division succeeded:", result)
+        return result
+    finally:
+        print("[8.3] finally block always runs")
+
+
+divide(10, 2)
+divide(10, 0)
+
+# Catching multiple exception types
+print()
+for value in ["10", 10, None]:
+    try:
+        print("[8.3] int():", int(value))  # type: ignore
+    except (ValueError, TypeError) as e:
+        print(f"[8.3] Caught {type(e).__name__}: {e}")
