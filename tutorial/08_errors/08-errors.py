@@ -69,3 +69,36 @@ for value in ["10", 10, None]:
         print("[8.3] int():", int(value))  # type: ignore
     except (ValueError, TypeError) as e:
         print(f"[8.3] Caught {type(e).__name__}: {e}")
+
+# =============================================================
+# [8.4] Raising Exceptions
+# raise re-raises the current exception or raises a new one.
+# In FastAPI: raise HTTPException(status_code=404, detail="Not found")
+# =============================================================
+
+print("--- 8.4 Raising Exceptions ---")
+
+
+def get_user(user_id: int) -> dict:
+    users = {1: "Alice", 2: "Bob"}
+    if user_id not in users:
+        raise ValueError(f"User {user_id} not found")
+    return {"id": user_id, "name": users[user_id]}
+
+
+print(get_user(1))
+
+try:
+    get_user(99)
+except ValueError as e:
+    print("[8.4] Caught ValueError:", e)
+
+# raise without argument re-raises the current exception
+try:
+    try:
+        raise RuntimeError("original error")
+    except RuntimeError:
+        print("[8.4] Caught, logging, then re-raising...")
+        raise  # re-raise the same exception
+except RuntimeError as e:
+    print("[8.4] Re-caught RuntimeError:", e)
