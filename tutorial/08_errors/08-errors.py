@@ -163,3 +163,62 @@ except NotFoundError as e:
     print(f"[8.6] resource={e.resource}, id={e.resource_id}")
 except AppError as e:
     print("[8.6] Generic AppError:", e)
+
+
+# =============================================================
+# [8.7] Defining Clean-up Actions
+# finally runs even if an exception propagates or return is called.
+# Real-world use: closing DB connections, releasing locks, flushing buffers.
+# =============================================================
+
+print("--- 8.7 Defining Clean-up Actions ---")
+
+
+def open_resource(name: str) -> None:
+    print(f"[8.7] Opening resource: {name}")
+    try:
+        if name == "bad":
+            raise RuntimeError("Resource failed to open")
+        print(f"[8.7] Using resource: {name}")
+    except RuntimeError as e:
+        print(f"[8.7] Error: {e}")
+    finally:
+        print(f"[8.7] Closing resource: {name} (always runs)")
+
+
+open_resource("good")
+print()
+open_resource("bad")
+
+# =============================================================
+# [8.8] Predefined Clean-up Actions — "with" statement (concept)
+# The "with" statement ensures clean-up even if an error occurs.
+# Already covered in Ch.7 (file I/O). Same principle applies to DB sessions.
+# Example: with open("file.txt") as f: ...
+#          with SessionLocal() as db: ...  (FastAPI pattern)
+# =============================================================
+
+# =============================================================
+# [8.9] Raising and Handling Multiple Unrelated Exceptions (Python 3.11+)
+# ExceptionGroup allows raising/handling multiple unrelated exceptions at once.
+# Use case: concurrent task runners, test frameworks.
+# Syntax: except* TypeError as eg: ...
+# =============================================================
+
+# =============================================================
+# [8.10] Enriching Exceptions with Notes (Python 3.11+)
+# exception.add_note(str) attaches additional context to an exception.
+# =============================================================
+
+print("--- 8.10 Enriching Exceptions with Notes (Python 3.11+ concept) ---")
+try:
+    err = ValueError("base error")
+    err.add_note("Hint: check your input value")
+    err.add_note(
+        "Ref: https://docs.python.org/3/tutorial/errors.html#enriching-exceptions-with-notes"
+    )
+    raise err
+except ValueError as e:
+    print("[8.10] ValueError:", e)
+    for note in e.__notes__:
+        print("[8.10] note:", note)
