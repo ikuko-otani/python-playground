@@ -102,3 +102,26 @@ try:
         raise  # re-raise the same exception
 except RuntimeError as e:
     print("[8.4] Re-caught RuntimeError:", e)
+
+# =============================================================
+# [8.5] Exception Chaining
+# raise NewException from original_exception
+# raise X from None — suppresses the original exception context
+# =============================================================
+
+print("--- 8.5 Exception Chaining ---")
+
+
+def fetch_data(key: str) -> str:
+    data = {"name": "Alice"}
+    try:
+        return data[key]
+    except KeyError as e:
+        raise ValueError(f"Invalid key: {key}") from e
+
+
+try:
+    fetch_data("age")
+except ValueError as e:
+    print("[8.5] ValueError:", e)
+    print("[8.5] __cause__:", e.__cause__)
