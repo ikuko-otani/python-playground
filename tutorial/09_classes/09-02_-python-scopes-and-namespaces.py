@@ -33,3 +33,21 @@ def outer():
 
 
 outer()
+
+
+# =============================================================================
+# Block 3: global statement
+# 'global' allows reassignment of a module-level variable inside a function.
+# =============================================================================
+
+count = 0  # global variable
+
+
+def increment():
+    global count  # declare global
+    count += 1
+
+
+increment()
+increment()
+print(f"count after 2 increments: {count}")
