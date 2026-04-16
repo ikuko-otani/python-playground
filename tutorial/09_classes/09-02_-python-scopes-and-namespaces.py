@@ -13,3 +13,23 @@ print(len([1, 2, 3]))  # built-in function
 # Global namespace: defined at module level
 spam = "global spam"
 print(spam)
+
+
+# =============================================================================
+# Block 2: Scope and LEGB Rule
+# Python searches names in the order: Local → Enclosing → Global → Built-in
+# =============================================================================
+
+
+def outer():
+    x = "enclosing"  # Enclosing scope
+
+    def inner():
+        x = "local"  # Local scope (shadows enclosing)
+        print(f"inner x: {x}")  # -> "local"
+
+    inner()
+    print(f"outer x: {x}")  # -> "enclosing"
+
+
+outer()
