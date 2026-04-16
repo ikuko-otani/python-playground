@@ -51,3 +51,26 @@ def increment():
 increment()
 increment()
 print(f"count after 2 increments: {count}")
+
+
+# =============================================================================
+# Block 4: nonlocal statement
+# 'nonlocal' allows reassignment of a variable in the nearest enclosing scope.
+# =============================================================================
+
+
+def make_counter():
+    n = 0
+
+    def counter():
+        nonlocal n  # declare nonlocal
+        n += 1
+        return n
+
+    return counter
+
+
+c = make_counter()
+print(c())  # 1
+print(c())  # 2
+print(c())  # 3
