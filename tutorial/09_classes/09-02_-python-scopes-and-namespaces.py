@@ -74,3 +74,41 @@ c = make_counter()
 print(c())  # 1
 print(c())  # 2
 print(c())  # 3
+
+
+# =============================================================================
+# Block 5: Scope and Namespace Example (from official tutorial 9.2.1)
+# Demonstrates local / nonlocal / global with do_* nested functions.
+# =============================================================================
+
+
+def scope_test():
+    def do_local():
+        spam = "local spam"
+
+    def do_nonlocal():
+        nonlocal spam
+        spam = "nonlocal spam"
+
+    def do_global():
+        global spam
+        spam = "global spam (modified)"
+
+    spam = "test spam"
+
+    do_local()
+    print(f"After do_local:    {spam}")
+    # "test spam"
+
+    do_nonlocal()
+    print(f"After do_nonlocal: {spam}")
+    # "nonlocal spam"
+
+    do_global()
+    print(f"After do_global:   {spam}")
+    # "nonlocal spam" (global changed, not enclosing)
+
+
+scope_test()
+print(f"Global spam after scope_test: {spam}")
+# "global spam (modified)"
