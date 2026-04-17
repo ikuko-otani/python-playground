@@ -72,3 +72,54 @@ print(xf())  # Hello, my data is 99
 
 # Equivalent call using the class directly
 print(MyClass.greet(x))  # Hello, my data is 99
+
+
+# ============================================================
+# 9.3.5 Class and Instance Variables
+# Class variables are shared; instance variables are per-object.
+# Mutable class variables are a common pitfall.
+# ============================================================
+
+
+# Correct pattern: instance variable for mutable state
+class Dog:
+    # class variable — shared by all Dog instances
+    species: str = "Canis familiaris"
+
+    def __init__(self, name: str) -> None:
+        # instance variable — unique to each instance
+        self.name: str = name
+        self.tricks: list[str] = []
+        # ✅ correct: per-instance list
+
+    def add_trick(self, trick: str) -> None:
+        self.tricks.append(trick)
+
+
+d1 = Dog("Rex")
+d2 = Dog("Buddy")
+d1.add_trick("roll over")
+d2.add_trick("play dead")
+print(d1.tricks)  # ['roll over'] ← not shared with d2
+print(d2.tricks)  # ['play dead']
+print(Dog.species)  # Canis familiaris
+
+
+# Anti-pattern: mutable class variable (pitfall)
+class DogBad:
+    tricks: list[str] = []
+    # ❌ shared across ALL instances!
+
+    def __init__(self, name: str) -> None:
+        self.name: str = name
+
+    def add_trick(self, trick: str) -> None:
+        self.tricks.append(trick)
+
+
+b1 = DogBad("Rex")
+b2 = DogBad("Buddy")
+b1.add_trick("roll over")
+b2.add_trick("play dead")
+print(b1.tricks)  # ['roll over', 'play dead'] ← b2's trick is here too!
+print(b2.tricks)  # ['roll over', 'play dead'] ← same object
