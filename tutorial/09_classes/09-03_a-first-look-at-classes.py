@@ -44,3 +44,18 @@ x = MyClass(99)
 print(MyClass.i)  # 12345 (class variable)
 print(x.data)  # 99 (instance variable)
 print(x.greet())  # Hello, my data is 99
+
+
+# ============================================================
+# 9.3.3 Instance Objects
+# Data attributes are created dynamically on the instance.
+# ============================================================
+
+# Dynamically add and access instance attributes
+x.counter = 1
+while x.counter < 4:
+    x.counter *= 2
+print(x.counter)  # 4
+
+# The instance does NOT affect the class variable
+del x.counter
