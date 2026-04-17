@@ -59,3 +59,16 @@ print(x.counter)  # 4
 
 # The instance does NOT affect the class variable
 del x.counter
+
+
+# ============================================================
+# 9.3.4 Method Objects
+# x.f() is equivalent to MyClass.f(x) — 'self' is passed automatically.
+# ============================================================
+
+# Store a method object and call it later
+xf = x.greet  # method object (not yet called)
+print(xf())  # Hello, my data is 99
+
+# Equivalent call using the class directly
+print(MyClass.greet(x))  # Hello, my data is 99
