@@ -46,3 +46,27 @@ class Cat(Animal):
 cat = Cat("Whiskers")
 print(cat.speak())
 # Whiskers makes a sound. (Cat version: Meou!)
+
+
+# ============================================================
+# Block 3: Overriding __init__ and calling super().__init__()
+# ============================================================
+
+
+class Bird(Animal):
+    def __init__(self, name: str, can_fly: bool) -> None:
+        super().__init__(name)  # initialize the base class
+        self.can_fly = can_fly  # add a new attribute
+
+    def speak(self) -> str:
+        return f"{self.name} says: Tweet!"
+
+    def info(self) -> str:
+        fly_status = "can fly" if self.can_fly else "cannot fly"
+        return f"{self.name} {fly_status}."
+
+
+parrot = Bird("Parrot", True)
+penguin = Bird("Penguin", False)
+print(parrot.info())  # Parrot can fly.
+print(penguin.info())  # Penguin cannot fly.
