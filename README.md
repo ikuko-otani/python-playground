@@ -45,8 +45,19 @@ This trade-off is documented in `learning_plan_minimum_viable.md` (v3, 2026-04-1
 
 ## 🔗 Related repositories
 
+### Flagship
 - [`payment-ledger-api`](https://github.com/ikuko-otani) — flagship project (target: ship by 2026-06)
+
+### Active learning playgrounds (backend stack)
+- [`docker-playground`](https://github.com/ikuko-otani/docker-playground) — containerization
+- [`fastapi-playground`](https://github.com/ikuko-otani/fastapi-playground) — API framework
+- [`sqlalchemy-playground`](https://github.com/ikuko-otani/sqlalchemy-playground) — async DB layer + Alembic
+- [`pytest-playground`](https://github.com/ikuko-otani/pytest-playground) — testing discipline
+
+### Interview preparation
 - [`neetcode-250`](https://github.com/ikuko-otani/neetcode-250) — DSA preparation (Phase 1 starts 2026-07-01)
+
+### On hold / retreat
 - [`typescript-playground`](https://github.com/ikuko-otani/typescript-playground) — on strategic hold
 - [`react-playground`](https://github.com/ikuko-otani/react-playground) — on strategic hold
 - [`laravel-playground`](https://github.com/ikuko-otani/laravel-playground) — strategic retreat
