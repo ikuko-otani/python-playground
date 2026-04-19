@@ -70,3 +70,17 @@ parrot = Bird("Parrot", True)
 penguin = Bird("Penguin", False)
 print(parrot.info())  # Parrot can fly.
 print(penguin.info())  # Penguin cannot fly.
+
+
+# ============================================================
+# Block 4: isinstance() and issubclass()
+# ============================================================
+
+# isinstance(obj, cls) — check if obj is an instance of cls or its subclass
+print(isinstance(dog, Dog))  # True
+print(isinstance(dog, Animal))  #  True (Dog is a subclass of Animal)
+print(isinstance(dog, Cat))  # False
+
+# issubclass(sub, cls) — check class hierarchy
+print(issubclass(Dog, Animal))  # True
+print(issubclass(Cat, Dog))  # False
