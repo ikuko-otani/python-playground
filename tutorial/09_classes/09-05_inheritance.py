@@ -28,3 +28,21 @@ class Dog(Animal):
 dog = Dog("Rex")
 print(dog.speak())  # Rex says: Woof!
 print(dog.describe())  # inherited from Animal => I am Rex.
+
+
+# ============================================================
+# Block 2: Calling the Base Class Method with super()
+# ============================================================
+
+
+# Extending (not just replacing) the base class method
+class Cat(Animal):
+    # extend base method via super()
+    def speak(self) -> str:
+        base_sound = super().speak()
+        return base_sound + " (Cat version: Meou!)"
+
+
+cat = Cat("Whiskers")
+print(cat.speak())
+# Whiskers makes a sound. (Cat version: Meou!)
