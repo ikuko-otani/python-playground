@@ -84,3 +84,35 @@ print(isinstance(dog, Cat))  # False
 # issubclass(sub, cls) — check class hierarchy
 print(issubclass(Dog, Animal))  # True
 print(issubclass(Cat, Dog))  # False
+
+
+# ============================================================
+# Block 5: Multiple Inheritance (9.5.1)
+# ============================================================
+
+
+# Python supports multiple inheritance; MRO (Method Resolution Order)
+# is determined by the C3 linearization algorithm.
+class Flyable:
+    def move(self) -> str:
+        return "Flying!"
+
+
+class Swimmable:
+    def move(self) -> str:
+        return "Swimmable!"
+
+
+class Duck(Flyable, Swimmable, Animal):
+    def __init__(self, name: str) -> None:
+        Animal.__init__(self, name)
+        # explicit base class init
+
+    def speak(self) -> str:
+        return f"{self.name} says: Quack!"
+
+
+duck = Duck("Donald")
+print(duck.speak())  #  Donald says: Quack!
+print(duck.move())  # Flying! (Flyable is first in MRO)
+print(Duck.__mro__)  # show Method Resolution Order
